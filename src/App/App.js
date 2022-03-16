@@ -1,12 +1,11 @@
-import React from 'react';
-import Layout from '../Project/Layout/Layout';
+import React, { Fragment } from 'react';
+import Router from './Router';
 
 const App = () => {
   return (
-    <div className="App">
-      <h1>Anki App</h1>
-      <Layout />
-    </div>
+    <Fragment>
+      <Router />
+    </Fragment>
   );
 }
 
