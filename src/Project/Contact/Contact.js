@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import Form from './Form/Form';
 
 const Contact = () => {
@@ -6,6 +7,12 @@ const Contact = () => {
         <div>
             <h1>Contact</h1>
             <Form />
+            <div>
+                <Link to="/home">Home</Link>
+            </div>
+            <div>
+                <Link to="/">App</Link>
+            </div>
         </div>
     );
 };
