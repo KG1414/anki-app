@@ -1,4 +1,4 @@
-const CardOptionsList = ({ multipleChoice, answerAmountNeeded }) => {
+const CardOptionsList = ({ multipleChoice }) => {
     let indexName = '';
     let listArray = [];
 
@@ -7,10 +7,8 @@ const CardOptionsList = ({ multipleChoice, answerAmountNeeded }) => {
         listArray.push(multipleChoice[indexName]);
     };
 
-    let count = 0;
     const list = listArray.map((ans, index) => {
         if (ans !== null) {
-            count += 1;
             return <li key={index}>{ans}</li>
         };
         return ans;

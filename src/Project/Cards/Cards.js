@@ -7,10 +7,20 @@ const Cards = ({ data }) => {
             category,
             question,
             answers,
-            correct_answers } = data;
+            correct_answers,
+            correct_answer
+        } = data;
         return (
-            <Card key={id} id={id} topic={category} question={question} multipleChoice={answers} correctAnswers={correct_answers} />
-        )
+            <Card
+                key={id}
+                id={id}
+                topic={category}
+                question={question}
+                multipleChoice={answers}
+                correctAnswers={correct_answers}
+                correctAnswer={correct_answer}
+            />
+        );
     });
 
     return (

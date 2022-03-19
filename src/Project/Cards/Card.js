@@ -5,7 +5,7 @@ import CardAnswersList from './CardAnswersList';
 
 
 const Card = (props) => {
-    const { id, topic, question, multipleChoice, correctAnswers } = props;
+    const { id, topic, question, multipleChoice, correctAnswers, correctAnswer } = props;
     const [isClassActive, setIsClassActive] = useState(false);
 
     const cardFlip = () => {
@@ -37,7 +37,7 @@ const Card = (props) => {
                         </div>
                         <div className="card__body">
                             <h3>{question}</h3>
-                            <CardAnswersList correctAnswers={correctAnswers} multipleChoice={multipleChoice} />
+                            <CardAnswersList correctAnswers={correctAnswers} correctAnswer={correctAnswer} multipleChoice={multipleChoice} />
                         </div>
                     </div>
                 </div>
