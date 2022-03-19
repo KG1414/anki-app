@@ -1,10 +1,10 @@
-const CardAnswersList = (props) => {
+const CardAnswersList = ({ correctAnswers, multipleChoice }) => {
     //multiple choice
     let indexName1 = '';
     let listArray1 = [];
-    for (let i = 0; i < Object.keys(props.multipleChoice).length; i++) {
+    for (let i = 0; i < Object.keys(multipleChoice).length; i++) {
         indexName1 = `answer_${(i + 10).toString(36)}`; // formula in ${} converts letter to number"
-        listArray1.push(props.multipleChoice[indexName1]);
+        listArray1.push(multipleChoice[indexName1]);
     };
 
     let count = 0;
@@ -21,7 +21,7 @@ const CardAnswersList = (props) => {
     let listArray = [];
     for (let i = 0; i < count; i++) {
         indexName = `answer_${(i + 10).toString(36)}_correct`; // formula in ${} converts letter to number"
-        listArray.push(props.correctAnswers[indexName]);
+        listArray.push(correctAnswers[indexName]);
     };
 
     const list = listArray.map((ans, index) => {

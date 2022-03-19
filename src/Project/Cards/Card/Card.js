@@ -1,11 +1,19 @@
 import { useState } from 'react';
 import './Card.css';
-import CardOptionsList from './CardOptionsList';
-import CardAnswersList from './CardAnswersList';
-
+import CardOptionsList from '../CardOptionsList';
+import CardAnswersList from '../CardAnswersList';
+import CorrectAnswer from './CorrectAnswer';
 
 const Card = (props) => {
-    const { id, topic, question, multipleChoice, correctAnswers, correctAnswer } = props;
+    const {
+        id,
+        topic,
+        question,
+        multipleChoice,
+        correctAnswers,
+        correctAnswer
+    } = props;
+
     const [isClassActive, setIsClassActive] = useState(false);
 
     const cardFlip = () => {
@@ -37,8 +45,9 @@ const Card = (props) => {
                         </div>
                         <div className="card__body">
                             <h3>{question}</h3>
-                            <CardAnswersList correctAnswers={correctAnswers} correctAnswer={correctAnswer} multipleChoice={multipleChoice} />
+                            <CardAnswersList correctAnswers={correctAnswers} multipleChoice={multipleChoice} />
                         </div>
+                        <CorrectAnswer correctAnswer={correctAnswer} correctAnswers={correctAnswers} />
                     </div>
                 </div>
 

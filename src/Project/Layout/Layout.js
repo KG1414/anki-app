@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import Cards from '../Cards/Cards';
 import { Link } from 'react-router-dom';
-import { useFetch, useFetchOnLoad } from '../../shared/utils/Api/useFetch';
-import { apiOne, apiTwo } from '../../shared/utils/Api/apiClient';
+import { useFetch, useFetchOnLoad } from '../../shared/utils/hooks/Api/useFetch';
+import { apiOne, apiTwo } from '../../shared/utils/hooks/Api/apiClient';
 
 const Layout = () => {
     const [show, setShow] = useState(false);

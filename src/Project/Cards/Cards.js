@@ -1,7 +1,8 @@
-import Card from './Card';
+import Card from "./Card/Card";
 
 const Cards = ({ data }) => {
     const cardResult = data.map((data) => {
+        const allResults = { ...data }; //copied state
         const {
             id,
             category,
@@ -9,7 +10,7 @@ const Cards = ({ data }) => {
             answers,
             correct_answers,
             correct_answer
-        } = data;
+        } = allResults;
         return (
             <Card
                 key={id}
@@ -22,7 +23,6 @@ const Cards = ({ data }) => {
             />
         );
     });
-
     return (
         <div>
             {cardResult}
