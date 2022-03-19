@@ -10,4 +10,4 @@ export const apiTwo = () => fetch(`https://quizapi.io/api/v1/questions?limit=2&a
 //DevOps
 //Bash
 //Uncategorized
-//""    found an empty one
+//"" found an empty one (uncategorized?)

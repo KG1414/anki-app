@@ -39,11 +39,13 @@ const Layout = () => {
                     <Link to="/contact">Contact</Link>
                 </div>
             </div>
+
             <Cards data={getTopicApi.data} />
             <button onClick={displayDataHandler}>Show data</button>
-            <h1>Second Data Set</h1>
-            <pre>{JSON.stringify(getTopicApiTwo.data, null, 2)}</pre>
             {show ? courseData : <p>No Data</p>}
+            <h1>Second / Onload Data Set</h1>
+            {getTopicApiTwo.loading && <p>...loading</p>}
+            {!getTopicApiTwo.loading && <pre>{JSON.stringify(getTopicApiTwo.data, null, 2)}</pre>}
         </div>
     );
 };

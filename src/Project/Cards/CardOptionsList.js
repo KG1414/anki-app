@@ -1,14 +1,17 @@
-const CardOptionsList = ({ multipleChoice }) => {
+const CardOptionsList = ({ multipleChoice, answerAmountNeeded }) => {
     let indexName = '';
     let listArray = [];
+
     for (let i = 0; i < Object.keys(multipleChoice).length; i++) {
         indexName = `answer_${(i + 10).toString(36)}`; // formula in ${} converts letter to number"
         listArray.push(multipleChoice[indexName]);
     };
 
-    const list = listArray.map((ans) => {
+    let count = 0;
+    const list = listArray.map((ans, index) => {
         if (ans !== null) {
-            return <li>{ans}</li>
+            count += 1;
+            return <li key={index}>{ans}</li>
         };
         return ans;
     });

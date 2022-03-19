@@ -1,6 +1,6 @@
 import { useEffect, useState, useCallback } from "react";
 
-export const useFetch = (apiFunc) => {
+export const useFetch = (apiFunc) => {  //is called without useEffect
     const [data, setData] = useState([]);
     const [error, setError] = useState("");
     const [loading, setLoading] = useState(false);
@@ -22,7 +22,7 @@ export const useFetch = (apiFunc) => {
     return { data, error, loading, getData };
 };
 
-export const useFetchOnLoad = (apiFunc) => {
+export const useFetchOnLoad = (apiFunc) => {  //is called with useEffect
     const [data, setData] = useState([]);
     const [error, setError] = useState("");
     const [loading, setLoading] = useState(false);
