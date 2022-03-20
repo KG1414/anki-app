@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import './Card.css';
-import CorrectAnswer from './CorrectAnswer';
+// import CorrectAnswer from './CorrectAnswer';
 
 const Card = (props) => {
     const [isClassActive, setIsClassActive] = useState(false);
@@ -36,7 +36,7 @@ const Card = (props) => {
                             <h3>{props.question}</h3>
                             <ol>{props.cardAnswersList}</ol>
                         </div>
-                        <CorrectAnswer correctAnswer={props.correctAnswer} correctAnswers={props.correctAnswers} explanation={props.explanation} />
+                        {props.answerResponse}
                     </div>
                 </div>
 

@@ -1,7 +1,9 @@
+// import { useState } from 'react';
 import Card from './Card';
+import CorrectAnswer from './CorrectAnswer';
 
 const CardConstructor = (props) => {
-    //front of card answer list
+    // const [allAnswers, setAllAnswers] = useState();
     let multipleChoiceArray = [];
     for (let i = 0; i < Object.keys(props.multipleChoice).length; i++) {
         let indexName1 = `answer_${(i + 10).toString(36)}`; // formula in ${} converts letter to number"
@@ -31,6 +33,13 @@ const CardConstructor = (props) => {
         return ans;
     });
 
+    const answerResponse = <CorrectAnswer
+        correctAnswer={props.correctAnswer}
+        correctAnswers={props.correctAnswers}
+        explanation={props.explanation}
+        count={count}
+    />
+
     return (
         <Card
             key={props.id}
@@ -44,7 +53,7 @@ const CardConstructor = (props) => {
 
             cardOptionsList={cardAnswersOptions}
             cardAnswersList={cardAnswersList}
-
+            answerResponse={answerResponse}
         />
     );
 };
