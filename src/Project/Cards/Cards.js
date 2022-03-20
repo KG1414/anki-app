@@ -1,18 +1,18 @@
-import Card from "./Card/Card";
+import CardConstructor from './Card/CardConstructor';
 
 const Cards = ({ data }) => {
     const cardResult = data.map((data) => {
-        const allResults = { ...data }; //copied state
         const {
             id,
             category,
             question,
             answers,
             correct_answers,
-            correct_answer
-        } = allResults;
+            correct_answer,
+            explanation
+        } = data;
         return (
-            <Card
+            <CardConstructor
                 key={id}
                 id={id}
                 topic={category}
@@ -20,6 +20,7 @@ const Cards = ({ data }) => {
                 multipleChoice={answers}
                 correctAnswers={correct_answers}
                 correctAnswer={correct_answer}
+                explanation={explanation}
             />
         );
     });

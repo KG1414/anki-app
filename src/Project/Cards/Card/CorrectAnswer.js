@@ -1,4 +1,4 @@
-const CorrectAnswer = ({ correctAnswer, correctAnswers }) => {
+const CorrectAnswer = ({ correctAnswer, correctAnswers, explanation }) => {
 
     //////
     // let indexName = '';
@@ -16,13 +16,34 @@ const CorrectAnswer = ({ correctAnswer, correctAnswers }) => {
     // });
     ////////
 
+    // if (correctAnswer !== null && !undefined && correctAnswer.length !== 0) {
+    //     return <h3>{correctAnswer}</h3>
+    // } else {
+    //     return <h3>Answer not available.</h3>
+    // };
 
-    console.log("Correct answers: ", correctAnswers);
-    if (correctAnswer !== null && !undefined && correctAnswer.length !== 0) {
-        return <h3>{correctAnswer}</h3>
-    } else {
-        return <h3>Answer not available.</h3>
+    const answer = () => {
+        if (correctAnswer !== null && !undefined && correctAnswer.length !== 0) {
+            return <p>{correctAnswer}</p>;
+        } else {
+            return <p>Answer not available.</p>
+        };
     };
+
+    const explainedAnswer = () => {
+        if (explanation !== null && !undefined && explanation.length !== 0) {
+            return <p>{explanation}</p>;
+        } else {
+            return;
+        };
+    };
+
+    return (
+        <div>
+            {answer && <h3>{answer()}</h3>}
+            {explainedAnswer && <p>{explainedAnswer()}</p>}
+        </div>
+    )
 };
 
 export default CorrectAnswer;

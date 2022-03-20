@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { useFetch, useFetchOnLoad } from '../../shared/utils/hooks/Api/useFetch';
 import { apiOne, apiTwo } from '../../shared/utils/hooks/Api/apiClient';
 
-const Layout = () => {
+const Main = () => {
     const [show, setShow] = useState(false);
     const getTopicApi = useFetch(apiOne);
     const getTopicApiTwo = useFetchOnLoad(apiTwo);
@@ -40,9 +40,10 @@ const Layout = () => {
                 </div>
             </div>
 
-            <Cards data={getTopicApi.data} />
             <button onClick={displayDataHandler}>Show data</button>
+            <Cards data={getTopicApi.data} />
             {show ? courseData : <p>No Data</p>}
+
             <h1>Second / Onload Data Set</h1>
             {getTopicApiTwo.loading && <p>...loading</p>}
             {!getTopicApiTwo.loading && <pre>{JSON.stringify(getTopicApiTwo.data, null, 2)}</pre>}
@@ -50,4 +51,4 @@ const Layout = () => {
     );
 };
 
-export default Layout;
+export default Main;
