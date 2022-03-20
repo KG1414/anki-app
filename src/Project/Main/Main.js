@@ -10,18 +10,31 @@ import { db } from '../../App/firebase-config';
 const topicApiQueryParams = `?limit=5&apiKey=${process.env.REACT_APP_KEY}`;
 
 const Main = () => {
-    const [show, setShow] = useState(false);
     const getTopicApi = useFetch(apiOne);
+    const [show, setShow] = useState(false);
+    const [allTopicData, setallTopicData] = useState([]);
 
     useEffect(() => {
-        getTopicApi.getData(topicApiQueryParams);
+        const controller = new AbortController();
+        const signal = controller.signal;
+
+        getTopicApi.getData(topicApiQueryParams, { signal });
+        const queryCollection = query(collection(db, 'topics'), orderBy('created', 'desc'))
+        onSnapshot(queryCollection, (querySnapshot) => {
+            setallTopicData(querySnapshot.docs.map(doc => (
+                doc.data()
+            )));
+        });
+        return () => (
+            controller.abort()
+        );
     }, []);
 
-    const displayDataHandler = async (e) => {
+    const createDataHandler = async (e) => {
         e.preventDefault();
         try {
             await addDoc(collection(db, 'topics'), {
-                data: getTopicApi.data,
+                results: getTopicApi.data,
                 created: Timestamp.now()
             })
         } catch (err) {
@@ -33,7 +46,7 @@ const Main = () => {
     let courseData = (
         <div style={{ display: "flex", marginLeft: "10%", paddingLeft: "2rem" }}>
             <h2>First Data Set</h2>
-            <pre>{JSON.stringify(getTopicApi.data, null, 2)}</pre>
+            <pre>{JSON.stringify(allTopicData[0], null, 2)}</pre>
         </div>
     );
     if (getTopicApi.loading) {
@@ -55,18 +68,11 @@ const Main = () => {
                 </div>
             </div>
 
-            <button onClick={displayDataHandler}>Show data</button>
-            <Cards data={getTopicApi.data} show={show} />
+            <button onClick={createDataHandler}>Pull data</button>
+            {show && <Cards data={allTopicData[0]} show={show} />}
             {show ? courseData : <p>No Data</p>}
         </div>
     );
 };
 
 export default Main;
-
-
-// const getTopicApiTwo = useFetchOnLoad(apiTwo);
-
-{/* <h1>Second / Onload Data Set</h1>
-{getTopicApiTwo.loading && <p>...loading</p>}
-{!getTopicApiTwo.loading && <pre>{JSON.stringify(getTopicApiTwo.data, null, 2)}</pre>} */}

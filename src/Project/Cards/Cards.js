@@ -1,7 +1,8 @@
-import CardConstructor from './Card/CardConstructor';
+import CardConstructor from './Card/CardFactory';
 
 const Cards = ({ data, show }) => {
-    const cardResult = data.map((data) => {
+    console.log("data", data.results);
+    const cardResult = data.results.map((data) => {
         const {
             id,
             category,
@@ -24,9 +25,8 @@ const Cards = ({ data, show }) => {
             />
         );
     });
-    console.log("Card result", cardResult);
     return (
-        <div>{show && cardResult}</div>
+        <div>{cardResult}</div>
     );
 };
 

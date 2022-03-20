@@ -1,4 +1,4 @@
-import { useEffect, useState, useCallback } from "react";
+import { useState } from "react";
 
 export const useFetch = (apiFunc) => {
     const [data, setData] = useState([]);
@@ -12,7 +12,9 @@ export const useFetch = (apiFunc) => {
             const data = await response.json();
             if (response.status === 200) {
                 setData(data);
-            };
+            } else {
+                console.error("An error occured", response.statusText, response.status)
+            }
         } catch (err) {
             setError(err.message || "Unexpected Error.");
         } finally {
