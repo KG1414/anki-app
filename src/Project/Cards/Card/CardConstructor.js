@@ -1,18 +1,15 @@
 import Card from './Card';
 
 const CardConstructor = (props) => {
-
-
-    //multiple choice answers options
-    let indexName1 = '';
-    let listArray1 = [];
+    //front of card answer list
+    let multipleChoiceArray = [];
     for (let i = 0; i < Object.keys(props.multipleChoice).length; i++) {
-        indexName1 = `answer_${(i + 10).toString(36)}`; // formula in ${} converts letter to number"
-        listArray1.push(props.multipleChoice[indexName1]);
+        let indexName1 = `answer_${(i + 10).toString(36)}`; // formula in ${} converts letter to number"
+        multipleChoiceArray.push(props.multipleChoice[indexName1]);
     };
 
     let count = 0;
-    const cardAnswersOptions = listArray1.map((ans, index) => {
+    const cardAnswersOptions = multipleChoiceArray.map((ans, index) => {
         if (ans !== null) {
             count += 1;
             return <li key={index}>{ans}</li>
@@ -21,10 +18,9 @@ const CardConstructor = (props) => {
     });
 
     //back of card answers
-    let indexName = '';
     let listArray = [];
     for (let i = 0; i < count; i++) {
-        indexName = `answer_${(i + 10).toString(36)}_correct`; // formula in ${} converts letter to number"
+        let indexName = `answer_${(i + 10).toString(36)}_correct`; // formula in ${} converts letter to number"
         listArray.push(props.correctAnswers[indexName]);
     };
 
