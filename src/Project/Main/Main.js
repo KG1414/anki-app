@@ -1,17 +1,32 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Cards from '../Cards/Cards';
 import { Link } from 'react-router-dom';
-import { useFetch, useFetchOnLoad } from '../../shared/utils/hooks/Api/useFetch';
-import { apiOne, apiTwo } from '../../shared/utils/hooks/Api/apiClient';
+import { useFetch } from '../../shared/utils/hooks/Api/useFetch';
+import { apiOne } from '../../shared/utils/hooks/Api/apiClient';
+
+import { collection, addDoc, Timestamp, query, orderBy, onSnapshot } from 'firebase/firestore';
+import { db } from '../../App/firebase-config';
+
+const topicApiQueryParams = `?limit=5&apiKey=${process.env.REACT_APP_KEY}`;
 
 const Main = () => {
     const [show, setShow] = useState(false);
     const getTopicApi = useFetch(apiOne);
-    const getTopicApiTwo = useFetchOnLoad(apiTwo);
 
-    const displayDataHandler = () => {
-        const topicApiQueryParams = `?limit=5&apiKey=${process.env.REACT_APP_KEY}`;
+    useEffect(() => {
         getTopicApi.getData(topicApiQueryParams);
+    }, []);
+
+    const displayDataHandler = async (e) => {
+        e.preventDefault();
+        try {
+            await addDoc(collection(db, 'topics'), {
+                data: getTopicApi.data,
+                created: Timestamp.now()
+            })
+        } catch (err) {
+            alert(err)
+        };
         setShow(prevValue => !prevValue);
     };
 
@@ -41,14 +56,17 @@ const Main = () => {
             </div>
 
             <button onClick={displayDataHandler}>Show data</button>
-            <Cards data={getTopicApi.data} />
+            <Cards data={getTopicApi.data} show={show} />
             {show ? courseData : <p>No Data</p>}
-
-            <h1>Second / Onload Data Set</h1>
-            {getTopicApiTwo.loading && <p>...loading</p>}
-            {!getTopicApiTwo.loading && <pre>{JSON.stringify(getTopicApiTwo.data, null, 2)}</pre>}
         </div>
     );
 };
 
 export default Main;
+
+
+// const getTopicApiTwo = useFetchOnLoad(apiTwo);
+
+{/* <h1>Second / Onload Data Set</h1>
+{getTopicApiTwo.loading && <p>...loading</p>}
+{!getTopicApiTwo.loading && <pre>{JSON.stringify(getTopicApiTwo.data, null, 2)}</pre>} */}

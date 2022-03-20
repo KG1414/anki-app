@@ -19,7 +19,7 @@ const CorrectAnswer = ({ correctAnswer, correctAnswers, explanation, count }) =>
     return (
         <div>
             {answer && <h3>{answer()}</h3>}
-            {explainedAnswer && <p>{explainedAnswer()}</p>}
+            {explainedAnswer && <div>{explainedAnswer()}</div>}
         </div>
     )
 };

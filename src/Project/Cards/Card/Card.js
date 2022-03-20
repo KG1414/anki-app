@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import './Card.css';
-// import CorrectAnswer from './CorrectAnswer';
 
 const Card = (props) => {
     const [isClassActive, setIsClassActive] = useState(false);

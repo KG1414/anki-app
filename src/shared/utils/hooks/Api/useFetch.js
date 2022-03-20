@@ -1,6 +1,6 @@
 import { useEffect, useState, useCallback } from "react";
 
-export const useFetch = (apiFunc) => {  //is called without useEffect
+export const useFetch = (apiFunc) => {
     const [data, setData] = useState([]);
     const [error, setError] = useState("");
     const [loading, setLoading] = useState(false);
@@ -19,32 +19,5 @@ export const useFetch = (apiFunc) => {  //is called without useEffect
             setLoading(false);
         }
     };
-    return { data, error, loading, getData };
-};
-
-export const useFetchOnLoad = (apiFunc) => {  //is called with useEffect
-    const [data, setData] = useState([]);
-    const [error, setError] = useState("");
-    const [loading, setLoading] = useState(false);
-
-    const getData = useCallback(async (...args) => {
-        setLoading(true);
-        try {
-            const response = await apiFunc(...args);
-            const data = await response.json();
-            if (response.status === 200) {
-                setData(data);
-            };
-        } catch (err) {
-            setError(err.message || "Unexpected Error.");
-        } finally {
-            setLoading(false);
-        }
-    }, [apiFunc]);
-
-
-    useEffect(() => {
-        getData();
-    }, [getData]);
     return { data, error, loading, getData };
 };

@@ -1,6 +1,6 @@
 import CardConstructor from './Card/CardConstructor';
 
-const Cards = ({ data }) => {
+const Cards = ({ data, show }) => {
     const cardResult = data.map((data) => {
         const {
             id,
@@ -24,10 +24,9 @@ const Cards = ({ data }) => {
             />
         );
     });
+    console.log("Card result", cardResult);
     return (
-        <div>
-            {cardResult}
-        </div>
+        <div>{show && cardResult}</div>
     );
 };
 
