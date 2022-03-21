@@ -16,6 +16,7 @@ const SideBar = (props) => {
             <button className="closebtn" onclick={closeNav}>X</button>
             <Link className="nav__link" to="/home">Home</Link>
             <Link className="nav__link" to="/contact">Contact</Link>
+            <Link></Link>
         </div>
     );
 };
