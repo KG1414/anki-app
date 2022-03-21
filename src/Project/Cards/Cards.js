@@ -1,4 +1,4 @@
-import CardConstructor from './Card/CardFactory';
+import CardFactory from './Card/ui/CardFactory';
 
 const Cards = ({ data, show }) => {
     console.log("data", data.results);
@@ -13,7 +13,7 @@ const Cards = ({ data, show }) => {
             explanation
         } = data;
         return (
-            <CardConstructor
+            <CardFactory
                 key={id}
                 id={id}
                 topic={category}

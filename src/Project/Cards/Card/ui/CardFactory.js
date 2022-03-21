@@ -1,7 +1,7 @@
 import Card from './Card';
-import CorrectAnswer from './CorrectAnswer';
+import CorrectAnswer from '../CorrectAnswer';
 
-const CardConstructor = (props) => {
+const CardFactory = (props) => {
     const { id, topic, question, multipleChoice, correctAnswers, correctAnswer, explanation } = props;
 
     //front of card answers
@@ -59,4 +59,4 @@ const CardConstructor = (props) => {
     );
 };
 
-export default CardConstructor;
+export default CardFactory;
