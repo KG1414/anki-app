@@ -1,17 +1,24 @@
 import { Link } from "react-router-dom";
+import './SideBar.css';
 
 const SideBar = (props) => {
+    const openNav = () => {
+        //
+    }
+
+    const closeNav = () => {
+        //
+    }
+
     return (
-        <div>
-            <h1>Layout</h1>
-            <div>
-                <Link to="/home">Home</Link>
-            </div>
-            <div>
-                <Link to="/contact">Contact</Link>
-            </div>
+        <div id="mySidebar" className="sidebar">
+            <h1>Anki App</h1>
+            <button className="closebtn" onclick={closeNav}>X</button>
+            <Link className="nav__link" to="/home">Home</Link>
+            <Link className="nav__link" to="/contact">Contact</Link>
         </div>
     );
 };
 
 export default SideBar;
+

@@ -19,7 +19,7 @@ const Layout = () => {
         const signal = controller.signal;
 
         getTopicApi.getData(topicApiQueryParams, { signal }); // Retrieving data from API
-        const queryCollection = query(collection(db, 'topics'), orderBy('created', 'desc')) //
+        const queryCollection = query(collection(db, 'topics'), orderBy('created', 'desc'));
         onSnapshot(queryCollection, (querySnapshot) => {
             setallTopicData(querySnapshot.docs.map(doc => (
                 doc.data()

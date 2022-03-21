@@ -1,0 +1,8 @@
+.content {
+    margin-left: 200px;
+    padding: 1px 16px;
+    height: 100%;
+    min-height: 2000px;
+    background-color: aqua;
+    overflow-x: hidden;
+}
