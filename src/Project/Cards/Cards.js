@@ -1,8 +1,8 @@
 import CardFactory from './Card/ui/CardFactory';
+import './Cards.css';
 
-const Cards = ({ data, show }) => {
-    console.log("data", data.results);
-    const cardResult = data.results.map((data) => {
+const Cards = ({ data }) => {
+    const cardResult = data[0].results.map((data) => {
         const {
             id,
             category,
@@ -26,7 +26,7 @@ const Cards = ({ data, show }) => {
         );
     });
     return (
-        <div>{cardResult}</div>
+        <div className="cards">{cardResult}</div>
     );
 };
 

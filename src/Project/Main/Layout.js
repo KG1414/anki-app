@@ -2,24 +2,27 @@ import { useEffect, useState } from 'react';
 import SideBar from './SideBar/SideBar';
 import Main from './Main';
 import { useFetch } from '../../shared/utils/hooks/Api/useFetch';
-import { apiOne } from '../../shared/utils/hooks/Api/apiClient';
+import { apiOne } from '../../shared/utils/hooks/Api/apiClient'; //Api Handler
 
+//Firebase
 import { collection, addDoc, Timestamp, query, orderBy, onSnapshot } from 'firebase/firestore';
 import { db } from '../../App/firebase-config';
 
 const topicApiQueryParams = `?limit=5&apiKey=${process.env.REACT_APP_KEY}`;
 
 const Layout = () => {
-    const getTopicApi = useFetch(apiOne);
     const [showCards, setShowCards] = useState(false);
     const [allTopicData, setallTopicData] = useState([]);
+    const [isSideBar, setIsSideBar] = useState(false);
+
+    const getTopicApi = useFetch(apiOne);
 
     useEffect(() => {
         const controller = new AbortController();
-        const signal = controller.signal;
 
-        getTopicApi.getData(topicApiQueryParams, { signal }); // Retrieving data from API
-        const queryCollection = query(collection(db, 'topics'), orderBy('created', 'desc'));
+        getTopicApi.getData(topicApiQueryParams); //get data from API
+
+        const queryCollection = query(collection(db, 'topics'), orderBy('created', 'desc')); //get data from Database
         onSnapshot(queryCollection, (querySnapshot) => {
             setallTopicData(querySnapshot.docs.map(doc => (
                 doc.data()
@@ -30,17 +33,21 @@ const Layout = () => {
         );
     }, []);
 
-    const createDataHandler = async (e) => { // Getting Topic data from Database that was originally sent from API
+    const createDataHandler = async (e, collectionName) => {
         e.preventDefault();
         try {
-            await addDoc(collection(db, 'topics'), {
+            await addDoc(collection(db, collectionName), { //Send data to Database
                 results: getTopicApi.data,
                 created: Timestamp.now()
             })
         } catch (err) {
             alert(err)
         };
-        setShowCards(prevValue => !prevValue);
+        setShowCards(true);
+    };
+
+    const sideBarToggler = () => {
+        setIsSideBar(prevValue => !prevValue);
     };
 
     let courseData = (
@@ -49,21 +56,17 @@ const Layout = () => {
             <pre>{JSON.stringify(allTopicData[0], null, 2)}</pre>
         </div>
     );
-    if (getTopicApi.loading) {
-        courseData = <p>Loading...</p>
-    };
-    if (getTopicApi.error) {
-        courseData = <p>An error occured</p>
-    };
 
     return (
         <>
-            <SideBar createDataHandler={createDataHandler} />
+            <SideBar createDataHandler={createDataHandler} sideBarToggler={sideBarToggler} isSideBar={isSideBar} />
             <Main
                 showCards={showCards}
                 courseData={courseData}
                 allTopicData={allTopicData}
                 createDataHandler={createDataHandler}
+                sideBarToggler={sideBarToggler}
+                isSideBar={isSideBar}
             />
         </>
     );

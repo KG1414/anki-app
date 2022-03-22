@@ -3,11 +3,12 @@ import { Link } from "react-router-dom";
 import './SideBar.css';
 
 const SideBar = (props) => {
-    // this.myRef = React.createRef();
     const [isTopicsDisplayed, setIsTopicsDisplayed] = useState(false);
+    const [caretClicked, setCaretClicked] = useState(false);
 
-    const openDropList = () => {
+    const openMenuDropList = () => {
         setIsTopicsDisplayed(prevValue => !prevValue);
+        setCaretClicked(prevValue => !prevValue);
     };
 
     const topics = [
@@ -31,16 +32,22 @@ const SideBar = (props) => {
         );
     });
 
+    let sideBar = "sidebar";
+    if (props.isSideBar) {
+        sideBar = "cleared__sidebar";
+    };
+
     return (
-        <div className="sidebar">
-            <h1>Anki App</h1>
-            <button className="closebtn">X</button>
+        <div className={sideBar}>
+            <h1 className="sidebar__title">Anki App
+                <i className="fa-solid fa-arrow-right-arrow-left fa-2xs" onClick={props.sideBarToggler}></i>
+            </h1>
             <Link className="nav__link" to="/home">Home</Link>
-            <button className="dropdown-btn" onClick={openDropList}>Topic
-                <i className="fa fa-caret-down"></i>
+            <button className="dropdown-btn" onClick={openMenuDropList}>Topic
+                <i className={caretClicked ? `fa fa-caret-right` : `fa fa-caret-down`}></i>
             </button>
             {isTopicsDisplayed ? <div className="dropdown-container">
-                <i onClick={props.createDataHandler}>+ Random</i>
+                <i onClick={(e) => props.createDataHandler(e, 'topics')}>+ Random</i>
                 {topicsList}
             </div> : <></>}
             <Link className="nav__link" to="/contact">Contact</Link>
