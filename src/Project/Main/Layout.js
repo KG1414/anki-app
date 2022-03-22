@@ -18,8 +18,6 @@ const Layout = () => {
     const getTopicApi = useFetch(apiOne);
 
     useEffect(() => {
-        const controller = new AbortController();
-
         getTopicApi.getData(topicApiQueryParams); //get data from API
 
         const queryCollection = query(collection(db, 'topics'), orderBy('created', 'desc')); //get data from Database
@@ -28,9 +26,6 @@ const Layout = () => {
                 doc.data()
             )));
         });
-        return () => (
-            controller.abort()
-        );
     }, []);
 
     const createDataHandler = async (e, collectionName) => {

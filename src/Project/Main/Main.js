@@ -18,7 +18,7 @@ const Main = (props) => {
             </div>
 
             <div className={contentSideBarClosed}>
-                <i class="fa-solid fa-bars fa-2xl" onClick={props.sideBarToggler}></i>
+                <i className="fa-solid fa-bars fa-2xl" onClick={props.sideBarToggler}></i>
                 {props.showCards && <Cards data={props.allTopicData} />}
                 {props.showCards ? props.courseData : <p>No Data</p>}
             </div>
