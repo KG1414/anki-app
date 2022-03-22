@@ -1,30 +1,74 @@
 .sidebar {
     margin: 0;
     padding: 20px 0 0 0;
-    width: 200px;
-    background-color: #f1f1f1;
+    width: 300px;
+    background-color: #EEEEEE;
     position: fixed;
     height: 100%;
-    overflow: auto;
-    /* overflow-x: hidden; */
+    overflow-x: hidden;
 }
 
-.sidebar a {
+.sidebar a, .dropdown-btn {
     display: block;
     color: black;
     padding: 16px;
     text-decoration: none;
+    border: none;
+    background: none;
+    width: 100%;
+    text-align: left;
+    cursor: pointer;
+    outline: none;
 }
 
-/* .sidebar a.active {
+.sidebar a.active {
     background-color: #04aa6d;
     color: white;
-} */
+}
 
-/* links on mouse-over */
-.sidebar a:hover:not(.active) {
+.sidebar a:hover:not(.active), 
+.dropdown-btn:hover:not(.active),
+.dropdown-container i:hover:not(.active) {
     background-color: #555;
     color: white;
+}
+
+.dropdown-container {
+  /* display: none; */
+  display: flex;
+  flex-direction: column;
+  background-color: #EEEEEE;
+  animation: growDown 600ms ease-in-out forwards;
+  transform-origin: top center;
+}
+
+.dropdown-container:target {
+  /* display: none; */
+  display: flex;
+  flex-direction: column;
+  background-color: #EEEEEE;
+}
+
+@keyframes growDown {
+    0% {
+        transform: scaleY(0)
+    }
+    80% {
+        transform: scaleY(1.1)
+    }
+    100% {
+        transform: scaleY(1)
+    }
+}
+
+.dropdown-container i {
+  padding: 8px 8px 8px 20px;
+  cursor: pointer;
+}
+
+.fa-caret-down {
+  float: right;
+  padding-right: 8px;
 }
 
 @media screen and (max-width: 700px) {

@@ -11,7 +11,7 @@ const topicApiQueryParams = `?limit=5&apiKey=${process.env.REACT_APP_KEY}`;
 
 const Layout = () => {
     const getTopicApi = useFetch(apiOne);
-    const [show, setShow] = useState(false);
+    const [showCards, setShowCards] = useState(false);
     const [allTopicData, setallTopicData] = useState([]);
 
     useEffect(() => {
@@ -40,7 +40,7 @@ const Layout = () => {
         } catch (err) {
             alert(err)
         };
-        setShow(prevValue => !prevValue);
+        setShowCards(prevValue => !prevValue);
     };
 
     let courseData = (
@@ -58,9 +58,9 @@ const Layout = () => {
 
     return (
         <>
-            <SideBar />
+            <SideBar createDataHandler={createDataHandler} />
             <Main
-                show={show}
+                showCards={showCards}
                 courseData={courseData}
                 allTopicData={allTopicData}
                 createDataHandler={createDataHandler}

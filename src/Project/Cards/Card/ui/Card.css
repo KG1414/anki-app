@@ -6,12 +6,17 @@
 }
 
 .card {
-    margin: 100px auto 0;
+    margin: 8% auto 20%;
     width: 80%;
     height: 600px;
     perspective: 1000px;
     border: none;
     border-radius: 16px;
+    transition: transform 100ms ease-in;
+}
+
+.card:hover {
+    transform: scale(1.03);
 }
 
 .card__inner {
