@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import SideBar from './SideBar/SideBar';
 import Main from './Main';
-import { useFetch } from '../../shared/utils/hooks/Api/useFetch';
-import { apiOne } from '../../shared/utils/hooks/Api/apiClient'; //Api Handler
+import { useFetch } from '../../shared/hooks/Api/useFetch';
+import { apiOne } from '../../shared/hooks/Api/apiClient'; //Api Handler
 
 //Firebase
 import { collection, addDoc, Timestamp, query, orderBy, onSnapshot } from 'firebase/firestore';
@@ -13,7 +13,7 @@ const topicApiQueryParams = `?limit=5&apiKey=${process.env.REACT_APP_KEY}`;
 const Layout = () => {
     const [showCards, setShowCards] = useState(false);
     const [allTopicData, setallTopicData] = useState([]);
-    const [isSideBar, setIsSideBar] = useState(false);
+    const [isSideBarClosed, setIsSideBarClosed] = useState(false);
 
     const getTopicApi = useFetch(apiOne);
 
@@ -21,10 +21,17 @@ const Layout = () => {
         getTopicApi.getData(topicApiQueryParams); //get data from API
 
         const queryCollection = query(collection(db, 'topics'), orderBy('created', 'desc')); //get data from Database
-        onSnapshot(queryCollection, (querySnapshot) => {
-            setallTopicData(querySnapshot.docs.map(doc => (
-                doc.data()
-            )));
+        const unsub = onSnapshot(queryCollection, (querySnapshot) => {
+            if (querySnapshot.docs !== null) {
+                setallTopicData(querySnapshot.docs.map(doc => (
+                    doc.data()
+                )));
+            } else {
+                setallTopicData([]);
+                throw console.error("error");
+            };
+
+            return () => unsub();
         });
     }, []);
 
@@ -42,7 +49,7 @@ const Layout = () => {
     };
 
     const sideBarToggler = () => {
-        setIsSideBar(prevValue => !prevValue);
+        setIsSideBarClosed(prevValue => !prevValue);
     };
 
     let courseData = (
@@ -54,14 +61,14 @@ const Layout = () => {
 
     return (
         <>
-            <SideBar createDataHandler={createDataHandler} sideBarToggler={sideBarToggler} isSideBar={isSideBar} />
+            <SideBar createDataHandler={createDataHandler} sideBarToggler={sideBarToggler} isSideBar={isSideBarClosed} />
             <Main
                 showCards={showCards}
                 courseData={courseData}
                 allTopicData={allTopicData}
                 createDataHandler={createDataHandler}
                 sideBarToggler={sideBarToggler}
-                isSideBar={isSideBar}
+                isSideBar={isSideBarClosed}
             />
         </>
     );

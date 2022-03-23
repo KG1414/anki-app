@@ -1,5 +1,4 @@
-import CardFactory from './Card/ui/CardFactory';
-import './Cards.css';
+import CardFactory from './CardFactory/CardFactory';
 
 const Cards = ({ data }) => {
     const cardResult = data[0].results.map((data) => {

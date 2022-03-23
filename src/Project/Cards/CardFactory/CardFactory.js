@@ -1,5 +1,5 @@
-import Card from './Card';
-import CorrectAnswer from '../CorrectAnswer';
+import Card from '../Card/Card';
+import CorrectAnswer from '../Card/CorrectAnswer';
 
 const CardFactory = (props) => {
     const { id, topic, question, multipleChoice, correctAnswers, correctAnswer, explanation } = props;
