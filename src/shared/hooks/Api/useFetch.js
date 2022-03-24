@@ -17,7 +17,9 @@ export const useFetch = () => {
         } catch (err) {
             setError(err.message || "Unexpected Error.");
         } finally {
-            setLoading(false);
+            setTimeout(() => {
+                setLoading(false);
+            }, 600);
         }
     }, []);
 

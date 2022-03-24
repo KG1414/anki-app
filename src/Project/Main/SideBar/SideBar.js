@@ -42,7 +42,6 @@ const SideBar = ({ createDataHandler }) => {
                 <i className={caretClicked ? `fa fa-caret-right` : `fa fa-caret-down`}></i>
             </button>
             {isTopicsDisplayed ? <div className="dropdown-container">
-                <i onClick={(e) => createDataHandler(e, "Code")}>+ Random</i>
                 {topicsList}
             </div> : <></>}
             <Link className="nav__link" to="/contact">Contact</Link>

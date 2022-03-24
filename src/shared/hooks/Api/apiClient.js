@@ -23,8 +23,8 @@ export const apiClient = (topic, getData) => {
         case "Bash":
             getData(`${baseUrl}?category=bash&limit=10&apiKey=${process.env.REACT_APP_KEY}`);
             break;
-        case "Uncategorized":
-            getData(`${baseUrl}?category=uncategorized&limit=10&apiKey=${process.env.REACT_APP_KEY}`);
+        case "Uncategorised":
+            getData(`${baseUrl}?limit=10&apiKey=${process.env.REACT_APP_KEY}`);
             break;
         default:
             break;

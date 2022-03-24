@@ -1,11 +1,16 @@
 import CardFactory from './CardFactory/CardFactory';
+import './Cards.css';
+// import { css } from "@emotion/react";
+// import RingLoader from "react-spinners/ClipLoader";
+import { ringLoader } from '../../shared/components/Spinners';
+
 
 const Cards = ({ data, loading }) => {
 
     let cardResult = <p>Nothing is here...</p>
 
     if (loading) {
-        cardResult = <p>...loading</p>
+        cardResult = <div className="anki__cards">{ringLoader(loading)}</div>
     };
 
     if (data && !loading) {
