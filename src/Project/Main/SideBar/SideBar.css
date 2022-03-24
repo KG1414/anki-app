@@ -105,9 +105,6 @@
     div.content {margin-left: 0;} 
   }
 
-  .cleared__sidebar {
-    display: none;
-  }
   
   /* @media screen and (max-width: 400px) {
     .sidebar a {

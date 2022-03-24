@@ -1,13 +1,33 @@
-export const apiOne = (queryparams) => fetch(`https://quizapi.io/api/v1/questions${queryparams}`);
-export const apiTwo = () => fetch(`https://quizapi.io/api/v1/questions?limit=2&apiKey=${process.env.REACT_APP_KEY}`);
+export const apiClient = (topic, getData) => {
+    const baseUrl = 'https://quizapi.io/api/v1/questions';
 
-//Categories
-//Code
-//Linux
-//CMS
-//SQL
-//Docker
-//DevOps
-//Bash
-//Uncategorized
-//"" found an empty one (uncategorized?)
+    switch (topic) {
+        case "Code":
+            getData(`${baseUrl}?category=code&limit=10&apiKey=${process.env.REACT_APP_KEY}`);
+            break;
+        case "Linux":
+            getData(`${baseUrl}?category=linux&limit=10&apiKey=${process.env.REACT_APP_KEY}`);
+            break;
+        case "CMS":
+            getData(`${baseUrl}?category=cms&limit=10&apiKey=${process.env.REACT_APP_KEY}`);
+            break;
+        case "SQL":
+            getData(`${baseUrl}?category=sql&limit=10&apiKey=${process.env.REACT_APP_KEY}`);
+            break;
+        case "Docker":
+            getData(`${baseUrl}?category=docker&limit=10&apiKey=${process.env.REACT_APP_KEY}`);
+            break;
+        case "DevOps":
+            getData(`${baseUrl}?category=devops&limit=10&apiKey=${process.env.REACT_APP_KEY}`);
+            break;
+        case "Bash":
+            getData(`${baseUrl}?category=bash&limit=10&apiKey=${process.env.REACT_APP_KEY}`);
+            break;
+        case "Uncategorized":
+            getData(`${baseUrl}?category=uncategorized&limit=10&apiKey=${process.env.REACT_APP_KEY}`);
+            break;
+        default:
+            break;
+    };
+};
+
