@@ -3,11 +3,11 @@ import Cards from "../Cards/Cards";
 
 const Main = (props) => {
     return (
-        <>
-            <div className="content">
-                {props.showCards && <Cards data={props.data} loading={props.loading} />}
-            </div>
-        </>
+
+        <div className="content">
+            {props.showCards && <Cards data={props.data} loading={props.loading} />}
+        </div>
+
     );
 };
 

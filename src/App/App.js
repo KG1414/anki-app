@@ -7,6 +7,6 @@ const App = () => {
       <Router />
     </Fragment>
   );
-}
+};
 
 export default App;

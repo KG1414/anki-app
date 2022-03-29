@@ -1,12 +1,9 @@
 import CardFactory from './CardFactory/CardFactory';
 import './Cards.css';
-// import { css } from "@emotion/react";
-// import RingLoader from "react-spinners/ClipLoader";
 import { ringLoader } from '../../shared/components/Spinners';
-
+import Carousel from '../../shared/components/Carousel/Carousel';
 
 const Cards = ({ data, loading }) => {
-
     let cardResult = <p>Nothing is here...</p>
 
     if (loading) {
@@ -40,7 +37,7 @@ const Cards = ({ data, loading }) => {
     };
 
     return (
-        <div className="cards">{cardResult}</div>
+        <div>{cardResult}</div>
     );
 };
 
