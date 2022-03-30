@@ -1,8 +1,7 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
-import './Contact.css';
 import onlineWorld from '../../images/online-world.png';
-import FormNavBar from './Form/FormNavbar';
+import FormNavBar from '../../shared/components/NavBar/NavBar';
+import './Contact.css';
 
 const formToken = process.env.REACT_APP_FORM_TOKEN;
 
@@ -30,6 +29,11 @@ const ContactForm = () => {
         })
             .then(response => {
                 if (response.ok) {
+                    details = {
+                        name: "",
+                        email: "",
+                        message: ""
+                    }
                     console.log(response);
                     alert("Form successfully submitted.");
                     setStatus("Success!");
@@ -51,15 +55,12 @@ const ContactForm = () => {
         setTimeout(() => {
             setStatus("Submit");
         }, 3000);
-        details = null;
     };
 
     return (
         <>
             <FormNavBar />
-
             <section id="contact-form-section" className="form-section">
-
                 <img className="main-img-form mb-4" src={onlineWorld} alt="connect" width="400"></img>
 
                 <div className="form-signin">
@@ -85,7 +86,7 @@ const ContactForm = () => {
 
                         <button className="w-100 btn btn-lg btn-primary contact-btn" type="submit">{status}</button>
 
-                        {altContact && <p class="form-error-text">Form Error. Please contact me via LinkedIn
+                        {altContact && <p class="form-error-text">Form Error. Please contact me via LinkedIn instead.
                             <span><a href="https://www.linkedin.com/in/kylegallard/" target="_blank" rel='noreferrer'> here</a></span>.</p>}
                     </form>
                 </div>
