@@ -1,14 +1,34 @@
 import { useState } from 'react';
 import Card from '../Card/Card';
 import CorrectAnswer from '../Card/CorrectAnswer';
-// import Carousel from '../../../shared/components/Carousel/Carousel';
 
 const CardFactory = (props) => {
     const { id, topic, question, multipleChoice, correctAnswers, correctAnswer, explanation } = props;
-    const [listItem, setListItem] = useState([]);
+    const [answersArray, setAnswersArray] = useState([]);
 
-    const onClickHandler = (ans) => {
-        setListItem(prevValue => [...prevValue, ans])
+    const onSelectHandler = (e, id, ans) => {
+        e.preventDefault();
+
+        const foundAnswerIndex = answersArray.findIndex(answer => {
+            return answer.id === id
+        });
+
+        if (foundAnswerIndex === -1) {
+            setAnswersArray((prevValue) => {
+                return [
+                    ...prevValue,
+                    {
+                        id: id,
+                        question: ans,
+                        activated: true
+                    }
+                ]
+            });
+        } else {
+            const tempArray = [...answersArray]
+            tempArray.splice(foundAnswerIndex, 1);
+            setAnswersArray(tempArray);
+        };
     };
 
     //front of card answers
@@ -23,7 +43,12 @@ const CardFactory = (props) => {
         if (ans !== null) {
             noOfAnswersCount += 1;
             return (
-                <li className={listItem.find(item => item === ans) ? 'active' : null} name={ans} onClick={() => onClickHandler(ans)} key={index}>{noOfAnswersCount}. {ans}</li>
+                <li className={answersArray.find(item => item.id === index && item.activated === true) ? "active" : ""}
+                    // checked={() => setChecked(prevValue => !prevValue)}
+                    onClick={(e) => onSelectHandler(e, index, ans)}
+                    name={ans}
+                    key={index}>{noOfAnswersCount}. {ans}
+                </li>
             )
         };
         return ans;

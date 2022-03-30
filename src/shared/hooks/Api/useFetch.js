@@ -20,7 +20,7 @@ export const useFetch = () => {
             setTimeout(() => {
                 setLoading(false);
             }, 600);
-        }
+        };
     }, []);
 
     useEffect(() => {
