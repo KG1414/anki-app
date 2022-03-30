@@ -1,3 +1,5 @@
+import './FormNav.css';
+
 const FormNavBar = () => {
     return (
         <nav className="navbar navbar-light bg-light fixed-top">
