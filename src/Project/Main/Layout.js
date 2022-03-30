@@ -21,6 +21,7 @@ const Layout = () => {
                 showCards={showCards}
                 loading={loading}
                 data={data}
+                error={error}
             />
         </div>
     );

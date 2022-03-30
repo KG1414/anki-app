@@ -1,13 +1,16 @@
 import CardFactory from './CardFactory/CardFactory';
 import './Cards.css';
 import { ringLoader } from '../../shared/components/Spinners';
-import Carousel from '../../shared/components/Carousel/Carousel';
 
-const Cards = ({ data, loading }) => {
-    let cardResult = <p>Nothing is here...</p>
+const Cards = ({ data, loading, error }) => {
+    let cardResult;
 
     if (loading) {
         cardResult = <div className="anki__cards">{ringLoader(loading)}</div>
+    };
+
+    if (!loading && !data && error) {
+        cardResult = <div className="anki__cards-error"><h3>An unexpected error occured.</h3></div>
     };
 
     if (data && !loading) {

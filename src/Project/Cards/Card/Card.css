@@ -83,6 +83,7 @@
     display: flex;
     flex-direction: column;
     overflow-y: auto;
+    /* overflow-x: hidden;  */
 }
 
 .card__header {
@@ -143,7 +144,7 @@ ol {
 ol > li {
     margin-top: 5px;
     padding: 10px 5px 10px 10px;
-    min-width: 500px;
+    min-width: 300px;
     list-style-type: none;
     transition: transform 100ms ease-in;
 }

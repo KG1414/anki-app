@@ -5,7 +5,7 @@ const Main = (props) => {
     return (
 
         <div className="content">
-            {props.showCards && <Cards data={props.data} loading={props.loading} />}
+            {props.showCards && <Cards data={props.data} loading={props.loading} error={props.error} />}
         </div>
 
     );

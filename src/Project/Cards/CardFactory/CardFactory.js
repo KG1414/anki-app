@@ -6,8 +6,8 @@ const CardFactory = (props) => {
     const { id, topic, question, multipleChoice, correctAnswers, correctAnswer, explanation } = props;
     const [answersArray, setAnswersArray] = useState([]);
 
-    const onSelectHandler = (e, id, res) => {
-        e.preventDefault();
+    const onSelectHandler = (event, id, res) => {
+        event.preventDefault();
         const foundAnswerIndex = answersArray.findIndex(answer => {
             return answer.id === id
         });
@@ -19,7 +19,6 @@ const CardFactory = (props) => {
                     {
                         id: id,
                         question: res,
-                        activated: true
                     }
                 ]
             });
@@ -42,8 +41,8 @@ const CardFactory = (props) => {
         if (res !== null) {
             noOfAnswersCount += 1;
             return (
-                <li className={answersArray.find(item => item.id === index && item.activated === true) ? "active" : ""}
-                    onClick={(e) => onSelectHandler(e, index, res)}
+                <li className={answersArray.find(item => item.id === index) ? "active" : ""}
+                    onClick={(event) => onSelectHandler(event, index, res)}
                     name={res}
                     key={index}>{noOfAnswersCount}. {res}
                 </li>
