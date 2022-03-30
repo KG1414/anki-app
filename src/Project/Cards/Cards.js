@@ -11,6 +11,7 @@ const Cards = ({ data, loading, error }) => {
 
     if (!loading && !data && error) {
         cardResult = <div className="anki__cards-error"><h3>An unexpected error occured.</h3></div>
+        console.error(error);
     };
 
     if (data && !loading) {

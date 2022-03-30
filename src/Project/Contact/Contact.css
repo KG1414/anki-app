@@ -1,0 +1,112 @@
+.form-section {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding-top: 7%;
+    padding-bottom: 7%;
+    background-color: white;
+  }
+  
+  .form-signin {
+    width: 100%;
+    max-width: 330px;
+    padding: 15px;
+    margin: auto;
+  }
+  
+  .contact-header {
+    font-weight: bold;
+      font-size: 40px;
+    background: #36D1DC;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #5B86E5, #36D1DC);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #5B86E5, #36D1DC); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: -0.05em;
+  }
+  
+  textarea,
+  textarea::-webkit-input-placeholder {
+    font-size: 14px;
+    resize: both;
+  }
+  
+  .form-signin .checkbox {
+    font-weight: 400;
+  }
+  
+  .form-signin .form-floating:focus-within {
+    z-index: 2;
+  }
+  
+  .form-signin input[type="email"] {
+    margin-bottom: -1px;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+  
+  .form-signin input[type="password"] {
+    margin-bottom: 10px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+  }
+  
+  .main-img-form {
+    display: flex;
+    min-width: 400px;
+    height: 100%;
+    text-align: center;
+  }
+  
+  .contact-btn {
+    opacity: 0.8;
+  }
+  
+  .form-error-text {
+    padding-top: 10%;
+    font-size: 12px !important;
+  }
+  
+  .top {
+    margin-bottom: 1px;
+  }
+  
+  .middle {
+      margin-bottom: 1px;
+  
+    }
+  
+  .bottom {
+    margin-top: 2px;
+   
+  }
+  
+  @media screen and (max-width: 800px) {
+    .contact-header {
+      font-weight: bold;
+      font-size: 30px;
+      background: #36D1DC;  /* fallback for old browsers */
+      background: -webkit-linear-gradient(to right, #5B86E5, #36D1DC);  /* Chrome 10-25, Safari 5.1-6 */
+      background: linear-gradient(to right, #5B86E5, #36D1DC); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      letter-spacing: -0.05em;
+    }
+  
+    img.main-img-form {
+      display: flex;
+      width: 100px !important;
+      min-width: 250px !important;
+      text-align: center;
+    }
+  
+    .form-section {
+      padding-top: 20%;
+      padding-bottom: 20%;
+    }
+  
+  }
