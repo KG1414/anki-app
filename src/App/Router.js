@@ -1,7 +1,8 @@
 import {
     BrowserRouter,
     Routes,
-    Route
+    Route,
+    Navigate
 } from "react-router-dom";
 import Layout from "../Project/Main/Layout";
 import Home from '../Project/Home/Home';
@@ -10,10 +11,10 @@ import ErrorPage from '../shared/components/ErrorPage/ErrorPage';
 
 const Router = () => {
     return (
-        <BrowserRouter>
+        <BrowserRouter basename="/">
             <Routes>
-                <Route exact path="/" element={<Layout />}></Route>
-                {/* <Route exact path="/topic/:topic" element={}></Route> */}
+                <Route path="/" element={<Navigate replace to="/app" />} />
+                <Route path="/app" element={<Layout />}></Route>
                 <Route path="/home" element={<Home />}></Route>
                 <Route path="/contact" element={<Contact />}></Route>
                 <Route path="*" element={<ErrorPage />}></Route>
