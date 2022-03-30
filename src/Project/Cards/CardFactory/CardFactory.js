@@ -6,9 +6,8 @@ const CardFactory = (props) => {
     const { id, topic, question, multipleChoice, correctAnswers, correctAnswer, explanation } = props;
     const [answersArray, setAnswersArray] = useState([]);
 
-    const onSelectHandler = (e, id, ans) => {
+    const onSelectHandler = (e, id, res) => {
         e.preventDefault();
-
         const foundAnswerIndex = answersArray.findIndex(answer => {
             return answer.id === id
         });
@@ -19,7 +18,7 @@ const CardFactory = (props) => {
                     ...prevValue,
                     {
                         id: id,
-                        question: ans,
+                        question: res,
                         activated: true
                     }
                 ]
@@ -39,19 +38,18 @@ const CardFactory = (props) => {
     };
 
     let noOfAnswersCount = 0;
-    const cardAnswersOptions = multipleChoiceArray.map((ans, index) => {
-        if (ans !== null) {
+    const cardAnswersOptions = multipleChoiceArray.map((res, index) => {
+        if (res !== null) {
             noOfAnswersCount += 1;
             return (
                 <li className={answersArray.find(item => item.id === index && item.activated === true) ? "active" : ""}
-                    // checked={() => setChecked(prevValue => !prevValue)}
-                    onClick={(e) => onSelectHandler(e, index, ans)}
-                    name={ans}
-                    key={index}>{noOfAnswersCount}. {ans}
+                    onClick={(e) => onSelectHandler(e, index, res)}
+                    name={res}
+                    key={index}>{noOfAnswersCount}. {res}
                 </li>
             )
         };
-        return ans;
+        return res;
     });
 
     //back of card answers
@@ -62,11 +60,11 @@ const CardFactory = (props) => {
     };
 
     var num = 1;
-    const cardAnswersList = listArray.map((ans, index) => {
-        if (ans !== null) {
-            return <li key={index}>{num++}. {ans}</li>
+    const cardAnswersList = listArray.map((res, index) => {
+        if (res !== null) {
+            return <li key={index}>{num++}. {res}</li>
         };
-        return ans;
+        return res;
     });
 
     const answerResponse = <CorrectAnswer
