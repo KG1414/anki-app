@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import SideBar from './SideBar/SideBar';
-import Main from './Main';
+import Main from './Main/Main';
 import { apiClient } from '../../shared/hooks/Api/apiClient';
 import { useFetch } from '../../shared/hooks/Api/useFetch';
 

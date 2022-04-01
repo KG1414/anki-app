@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import onlineWorld from '../../images/online-world.png';
+import Footer from '../../shared/components/Footer/Footer';
 import FormNavBar from '../../shared/components/NavBar/NavBar';
 import './Contact.css';
 
@@ -91,6 +92,7 @@ const ContactForm = () => {
                     </form>
                 </div>
             </section>
+            <Footer />
         </>
     )
 };
