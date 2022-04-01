@@ -1,6 +1,6 @@
 import CardFactory from './CardFactory/CardFactory';
 import './Cards.css';
-import { ringLoader } from '../../shared/components/Spinners/Spinners';
+import { ringLoader } from '../../../../shared/components/Spinners/Spinners';
 
 const Cards = ({ data, loading, error }) => {
     let cardResult = <div className="anki__cards-error"><h3>Nothing is here.</h3></div>;

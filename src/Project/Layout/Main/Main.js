@@ -1,7 +1,7 @@
 import './Main.css';
-import Cards from "../../Cards/Cards";
-import ProgressBar from '../../Cards/ProgressBar/ProgressBar';
-import '../../Cards/ProgressBar/ProgressBar.css';
+import Cards from "./Cards/Cards";
+import ProgressBar from './Cards/ProgressBar/ProgressBar';
+import './Cards/ProgressBar/ProgressBar.css';
 
 const Main = (props) => {
     let showContent = <h2 className="main__content" style={{ margin: "20% 0 0 30%" }}>{" "} No topic selected.</h2>;

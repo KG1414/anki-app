@@ -4,7 +4,7 @@ const CorrectAnswer = ({ correctAnswer, correctAnswers, explanation, count }) =>
         if (correctAnswer !== null && !undefined && correctAnswer.length !== 0) {
             return <p>{correctAnswer}</p>;
         } else {
-            return <p>Answer not available.</p>
+            return;
         };
     };
 

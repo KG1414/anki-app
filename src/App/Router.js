@@ -1,9 +1,4 @@
-import {
-    BrowserRouter,
-    Routes,
-    Route,
-    Navigate
-} from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Layout from "../Project/Layout/Layout";
 import Home from '../Project/Home/Home';
 import Contact from '../Project/Contact/Contact';
@@ -20,7 +15,7 @@ const Router = () => {
                 <Route path="*" element={<ErrorPage />}></Route>
             </Routes>
         </BrowserRouter>
-    )
+    );
 };
 
 export default Router;
