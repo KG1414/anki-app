@@ -1,9 +1,9 @@
 import Card from '../Card/Card';
 import CorrectAnswer from '../Card/CorrectAnswer';
-import { mappedCardFrontOptions } from './CardFront/mappedCardFrontOptions';
-import { mappedCardBackOptions } from './CardBack/mappedCardBackOptions';
-import { cardFrontAnswersUI } from './CardFront/cardFrontAnswersUI';
-import { cardBackAnswersUI } from './CardBack/cardBackAnswersUI';
+import { mappedCardFrontOptions } from './CardData/mappedCardFrontOptions';
+import { mappedCardBackOptions } from './CardData/mappedCardBackOptions';
+import { cardFrontAnswersUI } from './CardUI/cardFrontAnswersUI';
+import { cardBackAnswersUI } from './CardUI/cardBackAnswersUI';
 
 const CardFactory = ({
     id,

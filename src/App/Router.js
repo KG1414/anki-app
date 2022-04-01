@@ -6,9 +6,9 @@ import ErrorPage from '../shared/components/ErrorPage/ErrorPage';
 
 const Router = () => {
     return (
-        <BrowserRouter basename="/">
+        <BrowserRouter>
             <Routes>
-                <Route path="/" element={<Navigate replace to="/app" />} />
+                <Route path="/" element={<Navigate replace to="/home" />} />
                 <Route path="/app" element={<Layout />}></Route>
                 <Route path="/home" element={<Home />}></Route>
                 <Route path="/contact" element={<Contact />}></Route>
