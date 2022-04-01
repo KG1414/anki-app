@@ -1,7 +1,6 @@
 import CardFactory from './CardFactory/CardFactory';
 import './Cards.css';
 import { ringLoader } from '../../shared/components/Spinners/Spinners';
-import ProgressBar from './ProgressBar/ProgressBar';
 
 const Cards = ({ data, loading, error }) => {
     let cardResult = <div className="anki__cards-error"><h3>Nothing is here.</h3></div>;
@@ -42,8 +41,7 @@ const Cards = ({ data, loading, error }) => {
     };
 
     return (
-        <div>
-            <ProgressBar />
+        <div style={{ marginTop: "10%" }}>
             {cardResult}
         </div>
     );
