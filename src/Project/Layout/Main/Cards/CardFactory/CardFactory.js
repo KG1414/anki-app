@@ -1,69 +1,39 @@
-import { useState } from 'react';
 import Card from '../Card/Card';
 import CorrectAnswer from '../Card/CorrectAnswer';
+import { mappedCardFrontOptions } from './CardFront/mappedCardFrontOptions';
+import { mappedCardBackOptions } from './CardBack/mappedCardBackOptions';
+import { cardFrontAnswersUI } from './CardFront/cardFrontAnswersUI';
+import { cardBackAnswersUI } from './CardBack/cardBackAnswersUI';
 
-const CardFactory = (props) => {
-    const { id, topic, question, multipleChoice, correctAnswers, correctAnswer, explanation } = props;
-    const [answersArray, setAnswersArray] = useState([]);
+const CardFactory = ({
+    id,
+    topic,
+    question,
+    multipleChoice,
+    correctAnswers,
+    correctAnswer,
+    explanation,
+    isAnswerSelectedHandler,
+    selectedAnswersArray }) => {
 
-    const isAnswerSelectedHandler = (event, id, res) => {
-        event.preventDefault();
-        const foundAnswerIndex = answersArray.findIndex(answer => {
-            return answer.id === id
-        });
-        if (foundAnswerIndex === -1) {
-            setAnswersArray((prevValue) => {
-                return [
-                    ...prevValue,
-                    {
-                        id: id,
-                        question: res,
-                    }
-                ]
-            });
-        } else {
-            const tempArray = [...answersArray]
-            tempArray.splice(foundAnswerIndex, 1);
-            setAnswersArray(tempArray);
-        };
-    };
+    const [mappedMultipleChoiceArray] = mappedCardFrontOptions(
+        multipleChoice
+    );
 
-    //front of card answers
-    let multipleChoiceArray = [];
-    for (let i = 0; i < Object.keys(multipleChoice).length; i++) {
-        let indexName1 = `answer_${(i + 10).toString(36)}`;
-        multipleChoiceArray.push(multipleChoice[indexName1]);
-    };
+    const [cardAnswersOptions, noOfAnswersCount] = cardFrontAnswersUI(
+        mappedMultipleChoiceArray,
+        selectedAnswersArray,
+        isAnswerSelectedHandler
+    );
 
-    let noOfAnswersCount = 0;
-    const cardAnswersOptions = multipleChoiceArray.map((res, index) => {
-        if (res !== null) {
-            noOfAnswersCount += 1;
-            return (
-                <li className={answersArray.find(item => item.id === index) ? "active" : ""}
-                    onClick={(event) => isAnswerSelectedHandler(event, index, res)}
-                    name={res}
-                    key={index}>{noOfAnswersCount}. {res}
-                </li>
-            )
-        };
-        return res;
-    });
+    const [mappedBackCardAnswers] = mappedCardBackOptions(
+        noOfAnswersCount,
+        correctAnswers
+    );
 
-    //back of card answers
-    let listArray = [];
-    for (let i = 0; i < noOfAnswersCount; i++) {
-        let indexName = `answer_${(i + 10).toString(36)}_correct`;
-        listArray.push(correctAnswers[indexName]);
-    };
-
-    var num = 1;
-    const cardAnswersList = listArray.map((res, index) => {
-        if (res !== null) {
-            return <li key={index}>{num++}. {res}</li>
-        };
-        return res;
-    });
+    const [cardAnswersList] = cardBackAnswersUI(
+        mappedBackCardAnswers
+    );
 
     const answerResponse = <CorrectAnswer
         correctAnswer={correctAnswer}

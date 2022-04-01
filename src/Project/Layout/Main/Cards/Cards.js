@@ -1,14 +1,37 @@
+import { useState } from 'react';
 import CardFactory from './CardFactory/CardFactory';
 import './Cards.css';
 import { ringLoader } from '../../../../shared/components/Spinners/Spinners';
 
 const Cards = ({ data, loading, error }) => {
-    let cardResult = <div className="anki__cards-error"><h3>Nothing is here.</h3></div>;
+    const [selectedAnswersArray, setSelectedAnswersArray] = useState([]);
 
+    const isAnswerSelectedHandler = (event, id, res) => {
+        event.preventDefault();
+        const foundAnswerIndex = selectedAnswersArray.findIndex(answer => {
+            return answer.id === id
+        });
+        if (foundAnswerIndex === -1) {
+            setSelectedAnswersArray((prevValue) => {
+                return [
+                    ...prevValue,
+                    {
+                        id: id,
+                        question: res,
+                    }
+                ]
+            });
+        } else {
+            const tempArray = [...selectedAnswersArray]
+            tempArray.splice(foundAnswerIndex, 1);
+            setSelectedAnswersArray(tempArray);
+        };
+    };
+
+    let cardResult = <div className="anki__cards-error"><h3>Nothing is here.</h3></div>;
     if (loading) {
         cardResult = <div className="anki__cards">{ringLoader(loading)}</div>
     };
-
     if (!loading && !data && error) {
         cardResult = <div className="anki__cards-error"><h3>An unexpected error occured.</h3></div>
         console.error(error);
@@ -35,6 +58,8 @@ const Cards = ({ data, loading, error }) => {
                     correctAnswers={correct_answers}
                     correctAnswer={correct_answer}
                     explanation={explanation}
+                    isAnswerSelectedHandler={isAnswerSelectedHandler}
+                    selectedAnswersArray={selectedAnswersArray}
                 />
             );
         });
