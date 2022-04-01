@@ -1,7 +1,31 @@
-.content {
+.main__content {
     margin-left: 300px;
-    padding: 5% 16px;
+    padding: 1% 16px 0 16px;
     height: 500px;
     display: flex;
     flex-direction: column;
+}
+
+.breadcrumb__wrapper {
+    position: fixed;
+    width: 70%;
+    z-index: 200;
+}
+
+.breadcrumb__list {
+    display: flex;
+    flex-direction: row;
+    justify-content:space-around;
+}
+
+.breadcrumb__list li {
+    list-style: none;
+    padding: 0 10px;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 700px) {
+    .main__content {
+        margin-left: 0;
+    }
 }

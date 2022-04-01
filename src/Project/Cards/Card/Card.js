@@ -19,7 +19,7 @@ const Card = (props) => {
                         </div>
                         <div className="card__body">
                             <h3>{props.question}</h3>
-                            <ol>{props.cardOptionsList}</ol>
+                            <ol className="card__ol">{props.cardOptionsList}</ol>
                         </div>
                         <button onClick={cardFlip}>Submit</button>
                     </div>
@@ -32,7 +32,7 @@ const Card = (props) => {
                         </div>
                         <div className="card__body">
                             <h3>{props.question}</h3>
-                            <ol>{props.cardAnswersList}</ol>
+                            <ol className="card__ol">{props.cardAnswersList}</ol>
                         </div>
                         {props.answerResponse}
                         <button onClick={cardFlip}>To Front</button>

@@ -17,7 +17,7 @@
 }
 
 .card {
-    margin: 8% auto 20%;
+    margin: 12% auto 20%;
     width: 80%;
     height: 600px;
     perspective: 1000px;
@@ -136,11 +136,11 @@
     margin-left: 0;
 }
 
-ol {
+.card__ol {
     padding-left: 0;
 }
 
-ol > li {
+.card__ol > li {
     margin-top: 5px;
     padding: 10px 5px 10px 10px;
     min-width: 300px;
@@ -148,7 +148,7 @@ ol > li {
     transition: transform 100ms ease-in;
 }
 
-ol > li:hover {
+.card__ol > li:hover {
    border-radius: 10px;
    padding: 10px;
    list-style-type: none;

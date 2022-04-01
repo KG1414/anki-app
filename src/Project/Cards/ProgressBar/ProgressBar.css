@@ -1,0 +1,8 @@
+.main__progress {
+    min-width: 60%;
+    text-align: center; 
+    position: fixed; 
+    z-index: 100;  
+    margin-left: 8%;
+    margin-top: 30px;
+}

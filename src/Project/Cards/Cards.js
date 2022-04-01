@@ -1,9 +1,10 @@
 import CardFactory from './CardFactory/CardFactory';
 import './Cards.css';
 import { ringLoader } from '../../shared/components/Spinners/Spinners';
+import ProgressBar from './ProgressBar/ProgressBar';
 
 const Cards = ({ data, loading, error }) => {
-    let cardResult;
+    let cardResult = <div className="anki__cards-error"><h3>Nothing is here.</h3></div>;
 
     if (loading) {
         cardResult = <div className="anki__cards">{ringLoader(loading)}</div>
@@ -41,7 +42,10 @@ const Cards = ({ data, loading, error }) => {
     };
 
     return (
-        <div>{cardResult}</div>
+        <div>
+            <ProgressBar />
+            {cardResult}
+        </div>
     );
 };
 

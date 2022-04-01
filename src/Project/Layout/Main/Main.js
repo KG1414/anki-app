@@ -2,11 +2,26 @@ import './Main.css';
 import Cards from "../../Cards/Cards";
 
 const Main = (props) => {
-    return (
-        <div className="content">
-            {props.showCards && <Cards data={props.data} loading={props.loading} error={props.error} />}
-        </div>
 
+    let showContent = <h2 className="main__content" style={{ margin: "20% 0 0 30%" }}>{" "} No topic selected.</h2>;
+    if (props.showCards) {
+        showContent = <Cards data={props.data} loading={props.loading} error={props.error} />
+    };
+
+    return (
+        <>
+            <div className="main__content">
+                <div className="breadcrumb__wrapper">
+                    <nav>
+                        <ol className="breadcrumb__list">
+                            <li>Completed</li>
+                            <li>Re-Test</li>
+                        </ol>
+                    </nav>
+                </div>
+                {showContent}
+            </div>
+        </>
     );
 };
 
