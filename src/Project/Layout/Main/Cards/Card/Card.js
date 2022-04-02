@@ -4,8 +4,14 @@ import './Card.css';
 const Card = (props) => {
     const [isClassActive, setIsClassActive] = useState(false);
 
-    const cardFlip = () => {
+    const cardFlip = (e, id, isAnswerTrue, selectedAnswersArray) => {
+        e.preventDefault();
+        // console.log("Submit Card ID", id);
+        // console.log("Answer results onClick", isAnswerTrue);
+        console.log("Selected Answers Array", selectedAnswersArray);
         setIsClassActive(prevState => !prevState);
+
+
     };
 
     return (
@@ -21,7 +27,7 @@ const Card = (props) => {
                             <h3>{props.question}</h3>
                             <ol className="card__ol">{props.cardOptionsList}</ol>
                         </div>
-                        <button onClick={cardFlip}>Submit</button>
+                        <button onClick={(e) => cardFlip(e, props.id, props.isAnswerTrue, props.selectedAnswersArray)}>Submit</button>
                     </div>
                 </div>
 
@@ -35,7 +41,7 @@ const Card = (props) => {
                             <ol className="card__ol">{props.cardAnswersList}</ol>
                         </div>
                         {props.answerResponse}
-                        <button onClick={cardFlip}>To Front</button>
+                        <button onClick={(e) => cardFlip(e, props.id)}>To Front</button>
                     </div>
                 </div>
 
