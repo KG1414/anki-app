@@ -1,34 +1,8 @@
-import { useState } from 'react';
 import CardFactory from './CardFactory/CardFactory';
 import './Cards.css';
 import { ringLoader } from '../../../../shared/components/Spinners/Spinners';
 
 const Cards = ({ data, loading, error }) => {
-    const [selectedAnswersArray, setSelectedAnswersArray] = useState([]);
-
-    const isAnswerSelectedHandler = (event, id, clickedResult) => {
-        event.preventDefault();
-        const foundAnswerIndex = selectedAnswersArray.findIndex(answer => {
-            return answer.id === id
-        });
-
-        if (foundAnswerIndex === -1) {
-            setSelectedAnswersArray((prevValue) => {
-                return [
-                    ...prevValue,
-                    {
-                        id: id,
-                        question: clickedResult,
-                    }
-                ]
-            });
-        } else {
-            const tempArray = [...selectedAnswersArray]
-            tempArray.splice(foundAnswerIndex, 1);
-            setSelectedAnswersArray(tempArray);
-        };
-    };
-
     let cardResult = <div className="anki__cards-error"><h3>Nothing is here.</h3></div>;
     if (loading) {
         cardResult = <div className="anki__cards">{ringLoader(loading)}</div>
@@ -59,8 +33,6 @@ const Cards = ({ data, loading, error }) => {
                     correctAnswers={correct_answers}
                     correctAnswer={correct_answer}
                     explanation={explanation}
-                    isAnswerSelectedHandler={isAnswerSelectedHandler}
-                    selectedAnswersArray={selectedAnswersArray}
                 />
             );
         });
