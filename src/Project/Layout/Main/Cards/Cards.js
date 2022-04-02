@@ -6,18 +6,19 @@ import { ringLoader } from '../../../../shared/components/Spinners/Spinners';
 const Cards = ({ data, loading, error }) => {
     const [selectedAnswersArray, setSelectedAnswersArray] = useState([]);
 
-    const isAnswerSelectedHandler = (event, id, res) => {
+    const isAnswerSelectedHandler = (event, id, clickedResult) => {
         event.preventDefault();
         const foundAnswerIndex = selectedAnswersArray.findIndex(answer => {
             return answer.id === id
         });
+
         if (foundAnswerIndex === -1) {
             setSelectedAnswersArray((prevValue) => {
                 return [
                     ...prevValue,
                     {
                         id: id,
-                        question: res,
+                        question: clickedResult,
                     }
                 ]
             });

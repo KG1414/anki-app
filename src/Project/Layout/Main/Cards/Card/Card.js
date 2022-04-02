@@ -5,7 +5,7 @@ const Card = (props) => {
     const [isClassActive, setIsClassActive] = useState(false);
 
     const cardFlip = () => {
-        setIsClassActive((prevState) => (!prevState));
+        setIsClassActive(prevState => !prevState);
     };
 
     return (
