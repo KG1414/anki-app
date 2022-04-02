@@ -7,7 +7,7 @@ import { cardFrontAnswersUI } from './CardFrontUI';
 const CardFactory = ({ id, topic, question, multipleChoice, correctAnswers, correctAnswer, explanation }) => {
     const [selectedAnswersArray, setSelectedAnswersArray] = useState([]);
 
-    const isAnswerSelectedHandler = (event, id, res, cardID) => {
+    const isAnswerSelectedHandler = (event, id, res, cardID, correctAnswers) => {
         event.preventDefault();
         const foundAnswerIndex = selectedAnswersArray.findIndex(answer => {
             return answer.id === id
@@ -19,7 +19,8 @@ const CardFactory = ({ id, topic, question, multipleChoice, correctAnswers, corr
                     {
                         cardID: cardID,
                         id: id,
-                        question: res
+                        question: res,
+                        correctAnswers: correctAnswers
                     }
                 ]
             });
@@ -30,6 +31,11 @@ const CardFactory = ({ id, topic, question, multipleChoice, correctAnswers, corr
         };
     };
 
+    const compareAnswers = (isAnswerTrue, selectedAnswersArray) => {
+        console.log("Answers that are true or false: ", isAnswerTrue);
+        console.log("results from clicked answers after submit press: ", selectedAnswersArray);
+    }
+
     const [mappedMultipleChoiceArray] = mappedCardFrontOptions(
         multipleChoice
     );
@@ -38,7 +44,8 @@ const CardFactory = ({ id, topic, question, multipleChoice, correctAnswers, corr
         mappedMultipleChoiceArray,
         selectedAnswersArray,
         isAnswerSelectedHandler,
-        id
+        id,
+        correctAnswers
     );
 
 
@@ -80,6 +87,8 @@ const CardFactory = ({ id, topic, question, multipleChoice, correctAnswers, corr
 
             selectedAnswersArray={selectedAnswersArray}
             isAnswerTrue={listArray}
+
+            compareAnswers={compareAnswers}
         />
     );
 };

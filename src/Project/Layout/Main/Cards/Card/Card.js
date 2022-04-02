@@ -6,12 +6,8 @@ const Card = (props) => {
 
     const cardFlip = (e, id, isAnswerTrue, selectedAnswersArray) => {
         e.preventDefault();
-        // console.log("Submit Card ID", id);
-        // console.log("Answer results onClick", isAnswerTrue);
-        console.log("Selected Answers Array", selectedAnswersArray);
+        props.compareAnswers(isAnswerTrue, selectedAnswersArray);
         setIsClassActive(prevState => !prevState);
-
-
     };
 
     return (
