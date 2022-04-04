@@ -2,55 +2,70 @@ import { useState } from 'react';
 import './Card.css';
 
 const Card = (props) => {
+    const {
+        id,
+        topic,
+        question,
+        correctAnswers,
+        answerResult,
+        explainedAnswerResult,
+        isAnswerTrue,
+        frontOfCardAnswers,
+        selectedAnswersArray,
+        isAnswerSelectedHandler,
+        compareAnswers
+    } = props;
+
     const [isClassActive, setIsClassActive] = useState(false);
 
     const cardFlip = (e, id, isAnswerTrue, selectedAnswersArray) => {
         e.preventDefault();
-        props.compareAnswers(isAnswerTrue, selectedAnswersArray);
+        compareAnswers(isAnswerTrue, selectedAnswersArray);
         setIsClassActive(prevState => !prevState);
     };
 
-    const cardAnswersOptions = props.multipleChoiceArray.map((res, index) => (
-        <li className={props.selectedAnswersArray.find(item => item.id === index) ? "active" : ""}
-            onClick={(event) => props.isAnswerSelectedHandler(event, index, res, props.id, props.correctAnswers)}
-            name={res}
+    const cardAnswersOptions = frontOfCardAnswers.map((answer, index) => (
+        <li className={selectedAnswersArray.find(item => item.id === index) ? "active" : ""}
+            onClick={(event) => isAnswerSelectedHandler(event, index, answer, id, correctAnswers)}
+            name={answer}
             key={index}
-        >{index + 1}. {res}
+        >{index + 1}. {answer}
         </li>
     ));
 
-    const cardAnswersList = props.isAnswerTrue.map((res, index) => (
-        <li key={index}>{index + 1}. {res}</li>
+    const cardAnswersList = isAnswerTrue.map((answer, index) => (
+        <li key={index}>{index + 1}. {answer}</li>
     ));
 
     return (
-        <div className="card" id={props.id}>
+        <div className="card" id={id}>
             <div className={isClassActive ? `card__inner` : `card__inner is-flipped`}>
 
                 <div className="card__face card__face--front">
                     <div className="card__content">
                         <div className="card__header">
-                            <h2>{`Topic: ${props.topic}`}</h2>
+                            <h2>{`Topic: ${topic}`}</h2>
                         </div>
                         <div className="card__body">
-                            <h3>{props.question}</h3>
+                            <h3>{question}</h3>
                             <ol className="card__ol">{cardAnswersOptions}</ol>
                         </div>
-                        <button onClick={(e) => cardFlip(e, props.id, props.isAnswerTrue, props.selectedAnswersArray)}>Submit</button>
+                        <button onClick={(e) => cardFlip(e, id, isAnswerTrue, selectedAnswersArray)}>Submit</button>
                     </div>
                 </div>
 
                 <div className="card__face--back">
                     <div className="card__content">
                         <div className="card__header">
-                            <h2>{`Topic: ${props.topic}`}</h2>
+                            <h2>{`Topic: ${topic}`}</h2>
                         </div>
                         <div className="card__body">
-                            <h3>{props.question}</h3>
+                            <h3>{question}</h3>
                             <ol className="card__ol">{cardAnswersList}</ol>
                         </div>
-                        {props.answerResponse}
-                        <button onClick={(e) => cardFlip(e, props.id)}>To Front</button>
+                        <p>{answerResult()}</p>
+                        <p>{explainedAnswerResult()}</p>
+                        <button onClick={(e) => cardFlip(e, id)}>To Front</button>
                     </div>
                 </div>
 

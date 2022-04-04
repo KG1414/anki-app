@@ -3,6 +3,12 @@ import './Cards.css';
 import { ringLoader } from '../../../../shared/components/Spinners/Spinners';
 
 const Cards = ({ data, loading, error }) => {
+
+    const compareAnswers = (isAnswerTrue, selectedAnswersArray) => {
+        console.log("Is Answer True?: ", isAnswerTrue);
+        console.log("Selected Answers Array?: ", selectedAnswersArray);
+    };
+
     let cardResult = <div className="anki__cards-error"><h3>Nothing is here.</h3></div>;
     if (loading) {
         cardResult = <div className="anki__cards">{ringLoader(loading)}</div>
@@ -23,6 +29,7 @@ const Cards = ({ data, loading, error }) => {
                 correct_answer,
                 explanation
             } = data;
+
             return (
                 <CardFactory
                     key={id}
@@ -33,6 +40,7 @@ const Cards = ({ data, loading, error }) => {
                     correctAnswers={correct_answers}
                     correctAnswer={correct_answer}
                     explanation={explanation}
+                    compareAnswers={compareAnswers}
                 />
             );
         });

@@ -1,9 +1,16 @@
 import { useState } from 'react';
 import Card from '../Card/Card';
-import CorrectAnswer from '../Card/CorrectAnswer';
 import { createCard } from './createCard';
 
-const CardFactory = ({ id, topic, question, multipleChoice, correctAnswers, correctAnswer, explanation }) => {
+const CardFactory = ({
+    id,
+    topic,
+    question,
+    multipleChoice,
+    correctAnswers,
+    correctAnswer,
+    explanation,
+    compareAnswers }) => {
     const [selectedAnswersArray, setSelectedAnswersArray] = useState([]);
 
     const isAnswerSelectedHandler = (event, id, res, cardID, correctAnswers) => {
@@ -30,50 +37,20 @@ const CardFactory = ({ id, topic, question, multipleChoice, correctAnswers, corr
         };
     };
 
-    const compareAnswers = (isAnswerTrue, selectedAnswersArray) => {
-        console.log("Is Answer True?: ", isAnswerTrue);
-        // Answers that are true or false:
-        // [
-        //     "false",
-        //     "false",
-        //     "true",
-        //     "false"
-        // ]
-
-        console.log("Selected Answers Array?: ", selectedAnswersArray);
-        //results from clicked answers after submit press:  {
-        //{
-        // "cardID": 510,
-        // "id": 0,
-        // "question": "Header",
-        // },
-
-        // {
-        // "cardID": 510,
-        // "id": 2,
-        // "question": "Both the header and the body",
-        // }
-    };
-
     const [
-        mappedMultipleChoiceArray,
-        noOfAnswersCount,
-        backOfCardAnswers
+        frontOfCardAnswers,
+        backOfCardAnswers,
+        answerResult,
+        explainedAnswerResult
     ] = createCard(
         multipleChoice,
-        correctAnswers
+        correctAnswers,
+        correctAnswer,
+        explanation
     );
-
-    const answerResponse = <CorrectAnswer
-        correctAnswer={correctAnswer}
-        correctAnswers={correctAnswers}
-        explanation={explanation}
-        count={noOfAnswersCount}
-    />
 
     return (
         <Card
-            key={id}
             id={id}
             topic={topic}
             question={question}
@@ -81,15 +58,14 @@ const CardFactory = ({ id, topic, question, multipleChoice, correctAnswers, corr
             correctAnswers={correctAnswers}
             correctAnswer={correctAnswer}
             explanation={explanation}
-            cardAnswersList={backOfCardAnswers}
-            answerResponse={answerResponse}
+
+            isAnswerTrue={backOfCardAnswers}
+            frontOfCardAnswers={frontOfCardAnswers}
+            answerResult={answerResult}
+            explainedAnswerResult={explainedAnswerResult}
 
             selectedAnswersArray={selectedAnswersArray}
-            isAnswerTrue={backOfCardAnswers}
-
             isAnswerSelectedHandler={isAnswerSelectedHandler}
-            multipleChoiceArray={mappedMultipleChoiceArray}
-
             compareAnswers={compareAnswers}
         />
     );

@@ -1,11 +1,11 @@
-export const createCard = (multipleChoice, correctAnswers) => {
+export const createCard = (multipleChoice, correctAnswers, correctAnswer, explanation) => {
     let noOfAnswersCount = 0;
 
-    let mappedMultipleChoiceArray = [];
+    let frontOfCardAnswers = [];
     Object.keys(multipleChoice).map(obj => {
         if (multipleChoice[obj] !== null) {
             noOfAnswersCount += 1;
-            return mappedMultipleChoiceArray.push(multipleChoice[obj])
+            return frontOfCardAnswers.push(multipleChoice[obj])
         }
         return -1;
     });
@@ -18,5 +18,21 @@ export const createCard = (multipleChoice, correctAnswers) => {
         return -1;
     });
 
-    return [mappedMultipleChoiceArray, noOfAnswersCount, backOfCardAnswers];
+    const answerResult = () => {
+        if (correctAnswer !== null && !undefined && correctAnswer.length !== 0) {
+            return correctAnswer
+        } else {
+            return;
+        };
+    };
+
+    const explainedAnswerResult = () => {
+        if (explanation !== null && !undefined && explanation.length !== 0) {
+            return explanation
+        } else {
+            return;
+        };
+    };
+
+    return [frontOfCardAnswers, backOfCardAnswers, answerResult, explainedAnswerResult];
 };
