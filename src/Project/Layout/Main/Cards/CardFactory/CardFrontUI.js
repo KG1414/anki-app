@@ -1,7 +1,4 @@
 export const cardFrontAnswersUI = (multipleChoiceArray, selectedAnswersArray, isAnswerSelectedHandler, cardID, correctAnswers) => {
-
-
-
     let noOfAnswersCount = 0;
     const cardAnswersOptions = multipleChoiceArray.map((res, index) => {
         if (res !== null) {

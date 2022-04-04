@@ -33,8 +33,27 @@ const CardFactory = ({ id, topic, question, multipleChoice, correctAnswers, corr
 
     const compareAnswers = (isAnswerTrue, selectedAnswersArray) => {
         console.log("Answers that are true or false: ", isAnswerTrue);
+        // Answers that are true or false:
+        // [
+        //     "false",
+        //     "false",
+        //     "true",
+        //     "false"
+        // ]
         console.log("results from clicked answers after submit press: ", selectedAnswersArray);
-    }
+        //results from clicked answers after submit press:  {
+        //{
+        // "cardID": 510,
+        // "id": 0,
+        // "question": "Header",
+        // },
+
+        // {
+        // "cardID": 510,
+        // "id": 2,
+        // "question": "Both the header and the body",
+        // }
+    };
 
     const [mappedMultipleChoiceArray] = mappedCardFrontOptions(
         multipleChoice
@@ -47,7 +66,6 @@ const CardFactory = ({ id, topic, question, multipleChoice, correctAnswers, corr
         id,
         correctAnswers
     );
-
 
     //back of card answers
     let listArray = [];
