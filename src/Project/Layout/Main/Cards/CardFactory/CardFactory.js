@@ -1,8 +1,7 @@
 import { useState } from 'react';
 import Card from '../Card/Card';
 import CorrectAnswer from '../Card/CorrectAnswer';
-import { mappedCardFrontOptions } from './mappedCardFrontOptions';
-import { cardFrontAnswersUI } from './CardFrontUI';
+import { createCard } from './createCard';
 
 const CardFactory = ({ id, topic, question, multipleChoice, correctAnswers, correctAnswer, explanation }) => {
     const [selectedAnswersArray, setSelectedAnswersArray] = useState([]);
@@ -32,7 +31,7 @@ const CardFactory = ({ id, topic, question, multipleChoice, correctAnswers, corr
     };
 
     const compareAnswers = (isAnswerTrue, selectedAnswersArray) => {
-        console.log("Answers that are true or false: ", isAnswerTrue);
+        console.log("Is Answer True?: ", isAnswerTrue);
         // Answers that are true or false:
         // [
         //     "false",
@@ -40,7 +39,8 @@ const CardFactory = ({ id, topic, question, multipleChoice, correctAnswers, corr
         //     "true",
         //     "false"
         // ]
-        console.log("results from clicked answers after submit press: ", selectedAnswersArray);
+
+        console.log("Selected Answers Array?: ", selectedAnswersArray);
         //results from clicked answers after submit press:  {
         //{
         // "cardID": 510,
@@ -55,32 +55,14 @@ const CardFactory = ({ id, topic, question, multipleChoice, correctAnswers, corr
         // }
     };
 
-    const [mappedMultipleChoiceArray] = mappedCardFrontOptions(
-        multipleChoice
-    );
-
-    const [cardAnswersOptions, noOfAnswersCount] = cardFrontAnswersUI(
+    const [
         mappedMultipleChoiceArray,
-        selectedAnswersArray,
-        isAnswerSelectedHandler,
-        id,
+        noOfAnswersCount,
+        backOfCardAnswers
+    ] = createCard(
+        multipleChoice,
         correctAnswers
     );
-
-    //back of card answers
-    let listArray = [];
-    for (let i = 0; i < noOfAnswersCount; i++) {
-        let indexName = `answer_${(i + 10).toString(36)}_correct`;
-        listArray.push(correctAnswers[indexName]);
-    };
-
-    var num = 1;
-    const cardAnswersList = listArray.map((res, index) => {
-        if (res !== null) {
-            return <li key={index}>{num++}. {res}</li>
-        };
-        return res;
-    });
 
     const answerResponse = <CorrectAnswer
         correctAnswer={correctAnswer}
@@ -99,12 +81,14 @@ const CardFactory = ({ id, topic, question, multipleChoice, correctAnswers, corr
             correctAnswers={correctAnswers}
             correctAnswer={correctAnswer}
             explanation={explanation}
-            cardOptionsList={cardAnswersOptions}
-            cardAnswersList={cardAnswersList}
+            cardAnswersList={backOfCardAnswers}
             answerResponse={answerResponse}
 
             selectedAnswersArray={selectedAnswersArray}
-            isAnswerTrue={listArray}
+            isAnswerTrue={backOfCardAnswers}
+
+            isAnswerSelectedHandler={isAnswerSelectedHandler}
+            multipleChoiceArray={mappedMultipleChoiceArray}
 
             compareAnswers={compareAnswers}
         />

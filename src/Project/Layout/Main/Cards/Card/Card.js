@@ -10,6 +10,19 @@ const Card = (props) => {
         setIsClassActive(prevState => !prevState);
     };
 
+    const cardAnswersOptions = props.multipleChoiceArray.map((res, index) => (
+        <li className={props.selectedAnswersArray.find(item => item.id === index) ? "active" : ""}
+            onClick={(event) => props.isAnswerSelectedHandler(event, index, res, props.id, props.correctAnswers)}
+            name={res}
+            key={index}
+        >{index + 1}. {res}
+        </li>
+    ));
+
+    const cardAnswersList = props.isAnswerTrue.map((res, index) => (
+        <li key={index}>{index + 1}. {res}</li>
+    ));
+
     return (
         <div className="card" id={props.id}>
             <div className={isClassActive ? `card__inner` : `card__inner is-flipped`}>
@@ -21,7 +34,7 @@ const Card = (props) => {
                         </div>
                         <div className="card__body">
                             <h3>{props.question}</h3>
-                            <ol className="card__ol">{props.cardOptionsList}</ol>
+                            <ol className="card__ol">{cardAnswersOptions}</ol>
                         </div>
                         <button onClick={(e) => cardFlip(e, props.id, props.isAnswerTrue, props.selectedAnswersArray)}>Submit</button>
                     </div>
@@ -34,7 +47,7 @@ const Card = (props) => {
                         </div>
                         <div className="card__body">
                             <h3>{props.question}</h3>
-                            <ol className="card__ol">{props.cardAnswersList}</ol>
+                            <ol className="card__ol">{cardAnswersList}</ol>
                         </div>
                         {props.answerResponse}
                         <button onClick={(e) => cardFlip(e, props.id)}>To Front</button>
