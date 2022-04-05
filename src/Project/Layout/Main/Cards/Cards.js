@@ -2,6 +2,7 @@ import { useState } from 'react';
 import CardFactory from './CardFactory/CardFactory';
 import './Cards.css';
 import { ringLoader } from '../../../../shared/components/Spinners/Spinners';
+import Carousel from '../../../../shared/components/Carousel/Carousel';
 
 const Cards = ({ data, loading, error }) => {
     const [selectedAnswersArray, setSelectedAnswersArray] = useState([]);
@@ -76,9 +77,9 @@ const Cards = ({ data, loading, error }) => {
     };
 
     return (
-        <div style={{ marginTop: "10%" }}>
+        <Carousel visibleCardCount={1} totalElements={10}>
             {cardResult}
-        </div>
+        </Carousel>
     );
 };
 

@@ -41,23 +41,22 @@ const Carousel = (props) => {
     };
 
     return (
-        <div className="outer-carousel">
-            <button onClick={prev} className="left-arrow"><i className="fas fa-angle-double-left fa-2x"></i></button>
-            <div className="carousel-container">
-                <div className="carousel-wrapper">
-                    <div className="carousel-content-wrapper" onTouchStart={handleTouchStart} onTouchMove={handleTouchMove}>
-                        <div className={`carousel-content show-${visibleCardCount}`}
-                            style={{ transform: `translateX(-${currentIndex * (100 / visibleCardCount)}%)` }}>
-                            {children}
-                        </div>
+        <div className="carousel-container">
+            <div className="carousel-wrapper">
+                <div className="carousel-content-wrapper" onTouchStart={handleTouchStart} onTouchMove={handleTouchMove}>
+                    <div className={`carousel-content show-${visibleCardCount}`}
+                        style={{ transform: `translateX(-${currentIndex * (100 / visibleCardCount)}%)` }}>
+                        {children}
                     </div>
-
                 </div>
             </div>
-
-            {currentIndex < (totalElements - visibleCardCount) &&
-                <button onClick={next} className="right-arrow"><i className="fas fa-angle-double-right fa-2x"></i></button>}
-
+            <div className="carousel__button-container">
+                <button onClick={prev} className="left-arrow-button"><i style={{ color: "grey" }} className="fas fa-angle-double-left fa-1x"></i></button>
+                {
+                    currentIndex < (totalElements - visibleCardCount) &&
+                    <button onClick={next} className="right-arrow-button"><i style={{ color: "grey" }} className="fas fa-angle-double-right fa-1x"></i></button>
+                }
+            </div>
         </div>
     );
 };

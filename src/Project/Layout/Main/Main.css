@@ -47,6 +47,20 @@
         margin-left: 0;
     }
 
+    .main__content-nav {
+        z-index: 200;
+        padding: 0.5% 16px 1% 16px;
+        background-color: #9E9E9E;
+        color: white;
+        font-weight: bold;
+        height: 10%;
+        position: fixed;
+        width: 100%;
+        left: 0;
+        right: 0;
+        margin: 0 auto;
+    }
+
     .breadcrumb__wrapper {
         position: fixed;
         z-index: 200;
