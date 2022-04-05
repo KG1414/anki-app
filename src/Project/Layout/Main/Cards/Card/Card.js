@@ -13,13 +13,15 @@ const Card = (props) => {
         frontOfCardAnswers,
         selectedAnswersArray,
         isAnswerSelectedHandler,
-        compareAnswers
+        compareAnswers,
+        answersAnswered
     } = props;
 
     const [isClassActive, setIsClassActive] = useState(false);
 
     const cardFlip = (e, id, isAnswerTrue, selectedAnswersArray) => {
         e.preventDefault();
+        answersAnswered(1);
         compareAnswers(isAnswerTrue, selectedAnswersArray);
         setIsClassActive(prevState => !prevState);
     };

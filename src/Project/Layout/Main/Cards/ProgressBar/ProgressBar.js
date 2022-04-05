@@ -1,15 +1,34 @@
 import './ProgressBar.css';
 
-const ProgressBar = () => {
-    return (
-        <div className="progress main__progress" >
+const ProgressBar = ({ totalAnswers, numAnswered }) => {
+
+    let percentageAnswered = (numAnswered / totalAnswers) * 100;
+
+    let styleBar = (
+        <div
+            className="progress-bar main__progress-bar"
+            role="progressbar" style={{ width: "5%" }}
+            aria-valuenow="0"
+            aria-valuemin="0"
+            aria-valuemax="100"
+        >0%</div>
+    );
+
+    if (percentageAnswered !== isNaN && percentageAnswered > 0) {
+        styleBar = (
             <div
                 className="progress-bar main__progress-bar"
-                role="progressbar" style={{ width: "25%" }}
-                aria-valuenow="25"
+                role="progressbar" style={{ width: `${percentageAnswered}%` }}
+                aria-valuenow="0"
                 aria-valuemin="0"
                 aria-valuemax="100"
-            >25%</div>
+            >{`${percentageAnswered}%`}</div>
+        )
+    };
+
+    return (
+        <div className="progress main__progress" >
+            {styleBar}
         </div>
     );
 };

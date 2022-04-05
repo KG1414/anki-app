@@ -11,7 +11,8 @@ const CardFactory = ({
     explanation,
     compareAnswers,
     selectedAnswersArray,
-    isAnswerSelectedHandler }) => {
+    isAnswerSelectedHandler,
+    answersAnswered }) => {
 
     const [
         frontOfCardAnswers,
@@ -44,6 +45,8 @@ const CardFactory = ({
             isAnswerTrue={backOfCardAnswers}
             answerResult={answerResult}
             explainedAnswerResult={explainedAnswerResult}
+
+            answersAnswered={answersAnswered}
         />
     );
 };

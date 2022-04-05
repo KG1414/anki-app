@@ -4,7 +4,7 @@ import './Cards.css';
 import { ringLoader } from '../../../../shared/components/Spinners/Spinners';
 import Carousel from '../../../../shared/components/Carousel/Carousel';
 
-const Cards = ({ data, loading, error }) => {
+const Cards = ({ data, loading, error, answersAnswered }) => {
     const [selectedAnswersArray, setSelectedAnswersArray] = useState([]);
 
     const isAnswerSelectedHandler = (event, id, result, cardID, correctAnswers) => {
@@ -71,13 +71,14 @@ const Cards = ({ data, loading, error }) => {
                     compareAnswers={compareAnswers}
                     selectedAnswersArray={selectedAnswersArray}
                     isAnswerSelectedHandler={isAnswerSelectedHandler}
+                    answersAnswered={answersAnswered}
                 />
             );
         });
     };
 
     return (
-        <Carousel visibleCardCount={1} totalElements={10}>
+        <Carousel visibleCardCount={1} totalElements={data.length}>
             {cardResult}
         </Carousel>
     );
