@@ -1,3 +1,8 @@
+Work in progress. Viewable only on chrome and Brave Browser at this point https://anki-education-app.herokuapp.com/home
+
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
