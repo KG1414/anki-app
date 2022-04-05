@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import Card from '../Card/Card';
 import { createCard } from './createCard';
 
@@ -10,32 +9,9 @@ const CardFactory = ({
     correctAnswers,
     correctAnswer,
     explanation,
-    compareAnswers }) => {
-    const [selectedAnswersArray, setSelectedAnswersArray] = useState([]);
-
-    const isAnswerSelectedHandler = (event, id, res, cardID, correctAnswers) => {
-        event.preventDefault();
-        const foundAnswerIndex = selectedAnswersArray.findIndex(answer => {
-            return answer.id === id
-        });
-        if (foundAnswerIndex === -1) {
-            setSelectedAnswersArray((prevValue) => {
-                return [
-                    ...prevValue,
-                    {
-                        cardID: cardID,
-                        id: id,
-                        question: res,
-                        correctAnswers: correctAnswers
-                    }
-                ]
-            });
-        } else {
-            const tempArray = [...selectedAnswersArray]
-            tempArray.splice(foundAnswerIndex, 1);
-            setSelectedAnswersArray(tempArray);
-        };
-    };
+    compareAnswers,
+    selectedAnswersArray,
+    isAnswerSelectedHandler }) => {
 
     const [
         frontOfCardAnswers,
@@ -51,6 +27,7 @@ const CardFactory = ({
 
     return (
         <Card
+            //props directly from API
             id={id}
             topic={topic}
             question={question}
@@ -59,11 +36,13 @@ const CardFactory = ({
             correctAnswer={correctAnswer}
             explanation={explanation}
 
+            //props from createCard()
             isAnswerTrue={backOfCardAnswers}
             frontOfCardAnswers={frontOfCardAnswers}
             answerResult={answerResult}
             explainedAnswerResult={explainedAnswerResult}
 
+            //functions passed as props from Cards.js
             selectedAnswersArray={selectedAnswersArray}
             isAnswerSelectedHandler={isAnswerSelectedHandler}
             compareAnswers={compareAnswers}

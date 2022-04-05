@@ -25,7 +25,7 @@ const Card = (props) => {
     };
 
     const cardAnswersOptions = frontOfCardAnswers.map((answer, index) => (
-        <li className={selectedAnswersArray.find(item => item.id === index) ? "active" : ""}
+        <li className={selectedAnswersArray.find(item => item.id === index && id === item.cardID) ? "active" : ""}
             onClick={(event) => isAnswerSelectedHandler(event, index, answer, id, correctAnswers)}
             name={answer}
             key={index}

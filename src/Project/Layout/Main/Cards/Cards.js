@@ -1,8 +1,34 @@
+import { useState } from 'react';
 import CardFactory from './CardFactory/CardFactory';
 import './Cards.css';
 import { ringLoader } from '../../../../shared/components/Spinners/Spinners';
 
 const Cards = ({ data, loading, error }) => {
+    const [selectedAnswersArray, setSelectedAnswersArray] = useState([]);
+
+    const isAnswerSelectedHandler = (event, id, result, cardID, correctAnswers) => {
+        event.preventDefault();
+        const foundAnswerIndex = selectedAnswersArray.findIndex(answer => {
+            return answer.id === id && answer.cardID === cardID
+        });
+        if (foundAnswerIndex === -1) {
+            setSelectedAnswersArray((prevValue) => {
+                return [
+                    ...prevValue,
+                    {
+                        cardID: cardID,
+                        id: id,
+                        question: result,
+                        correctAnswers: correctAnswers
+                    }
+                ]
+            });
+        } else {
+            const tempArray = [...selectedAnswersArray]
+            tempArray.splice(foundAnswerIndex, 1);
+            setSelectedAnswersArray(tempArray);
+        };
+    };
 
     const compareAnswers = (isAnswerTrue, selectedAnswersArray) => {
         console.log("Is Answer True?: ", isAnswerTrue);
@@ -41,6 +67,8 @@ const Cards = ({ data, loading, error }) => {
                     correctAnswer={correct_answer}
                     explanation={explanation}
                     compareAnswers={compareAnswers}
+                    selectedAnswersArray={selectedAnswersArray}
+                    isAnswerSelectedHandler={isAnswerSelectedHandler}
                 />
             );
         });
