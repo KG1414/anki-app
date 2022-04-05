@@ -1,6 +1,6 @@
-import './Main.css';
 import Cards from "./Cards/Cards";
 import ProgressBar from './Cards/ProgressBar/ProgressBar';
+import './Main.css';
 import './Cards/ProgressBar/ProgressBar.css';
 
 const Main = (props) => {
@@ -10,8 +10,8 @@ const Main = (props) => {
     };
 
     return (
-        <>
-            <div className="main__content">
+        <div className="main__content">
+            <div className="main__content-nav">
                 <div className="breadcrumb__wrapper">
                     <nav>
                         <ol className="breadcrumb__list">
@@ -23,9 +23,9 @@ const Main = (props) => {
                 <div className="progressbar__wrapper">
                     <ProgressBar />
                 </div>
-                {showContent}
             </div>
-        </>
+            {showContent}
+        </div>
     );
 };
 

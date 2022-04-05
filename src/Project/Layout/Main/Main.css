@@ -1,9 +1,22 @@
 .main__content {
     margin-left: 300px;
-    padding: 1% 16px 0 16px;
     height: 500px;
     display: flex;
     flex-direction: column;
+}
+
+.main__content-nav {
+    z-index: 200;
+    padding: 0.5% 16px 1% 16px;
+    background-color: #9E9E9E;
+    color: white;
+    font-weight: bold;
+    height: 10%;
+    position: fixed;
+    width: 100%;
+    left:  300px;
+    right: 0;
+    margin: 0 auto;
 }
 
 .breadcrumb__wrapper {

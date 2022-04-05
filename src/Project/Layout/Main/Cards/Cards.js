@@ -8,9 +8,11 @@ const Cards = ({ data, loading, error }) => {
 
     const isAnswerSelectedHandler = (event, id, result, cardID, correctAnswers) => {
         event.preventDefault();
+
         const foundAnswerIndex = selectedAnswersArray.findIndex(answer => {
             return answer.id === id && answer.cardID === cardID
         });
+
         if (foundAnswerIndex === -1) {
             setSelectedAnswersArray((prevValue) => {
                 return [
@@ -33,6 +35,7 @@ const Cards = ({ data, loading, error }) => {
     const compareAnswers = (isAnswerTrue, selectedAnswersArray) => {
         console.log("Is Answer True?: ", isAnswerTrue);
         console.log("Selected Answers Array?: ", selectedAnswersArray);
+
     };
 
     let cardResult = <div className="anki__cards-error"><h3>Nothing is here.</h3></div>;
@@ -43,7 +46,6 @@ const Cards = ({ data, loading, error }) => {
         cardResult = <div className="anki__cards-error"><h3>An unexpected error occured.</h3></div>
         console.error(error);
     };
-
     if (data && !loading) {
         cardResult = data.map((data) => {
             const {
@@ -55,7 +57,6 @@ const Cards = ({ data, loading, error }) => {
                 correct_answer,
                 explanation
             } = data;
-
             return (
                 <CardFactory
                     key={id}

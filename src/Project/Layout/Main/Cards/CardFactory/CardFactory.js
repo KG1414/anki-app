@@ -35,17 +35,15 @@ const CardFactory = ({
             correctAnswers={correctAnswers}
             correctAnswer={correctAnswer}
             explanation={explanation}
-
-            //props from createCard()
-            isAnswerTrue={backOfCardAnswers}
-            frontOfCardAnswers={frontOfCardAnswers}
-            answerResult={answerResult}
-            explainedAnswerResult={explainedAnswerResult}
-
             //functions passed as props from Cards.js
+            compareAnswers={compareAnswers}
             selectedAnswersArray={selectedAnswersArray}
             isAnswerSelectedHandler={isAnswerSelectedHandler}
-            compareAnswers={compareAnswers}
+            //props from createCard()
+            frontOfCardAnswers={frontOfCardAnswers}
+            isAnswerTrue={backOfCardAnswers}
+            answerResult={answerResult}
+            explainedAnswerResult={explainedAnswerResult}
         />
     );
 };

@@ -6,6 +6,7 @@ const override = css`
   margin: 0 auto;
   border-color: #64B5F6;
 `;
+
 const color = "#0277BD"
 
 export const ringLoader = (loading) => (
