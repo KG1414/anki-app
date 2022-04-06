@@ -36,16 +36,19 @@ const CardFactory = ({
             correctAnswers={correctAnswers}
             correctAnswer={correctAnswer}
             explanation={explanation}
+
             //functions passed as props from Cards.js
             compareAnswers={compareAnswers}
             selectedAnswersArray={selectedAnswersArray}
             isAnswerSelectedHandler={isAnswerSelectedHandler}
+
             //props from createCard()
             frontOfCardAnswers={frontOfCardAnswers}
             isAnswerTrue={backOfCardAnswers}
             answerResult={answerResult}
             explainedAnswerResult={explainedAnswerResult}
 
+            //functions passed from main.js
             answersAnswered={answersAnswered}
         />
     );

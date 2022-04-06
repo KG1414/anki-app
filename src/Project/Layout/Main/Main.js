@@ -12,7 +12,7 @@ const Main = (props) => {
         console.log(num);
     };
 
-    let showContent = <h2 className="main__content" style={{ margin: "20% 0 0 30%" }}>{" "} No topic selected.</h2>;
+    let showContent = <h2 className="main__content">{" "} No topic selected.</h2>;
     if (props.showCards) {
         showContent = <Cards data={props.data} loading={props.loading} error={props.error} answersAnswered={answersAnswered} />
     };
