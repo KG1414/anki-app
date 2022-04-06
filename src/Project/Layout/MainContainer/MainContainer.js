@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Cards from "./Cards/Cards";
 import ProgressBar from './Cards/ProgressBar/ProgressBar';
-import './Main.css';
+import './MainContainer.css';
 import './Cards/ProgressBar/ProgressBar.css';
 
 const Main = (props) => {
@@ -14,7 +14,7 @@ const Main = (props) => {
 
     let showContent = <h2 className="main__content">{" "} No topic selected.</h2>;
     if (props.showCards) {
-        showContent = <Cards data={props.data} loading={props.loading} error={props.error} answersAnswered={answersAnswered} />
+        showContent = <Cards data={props.data} loading={props.loading} error={props.error} answersAnswered={answersAnswered} />;
     };
 
     return (
