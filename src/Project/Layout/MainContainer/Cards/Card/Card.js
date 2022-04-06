@@ -7,7 +7,6 @@ const Card = (props) => {
         topic,
         question,
         correctAnswers,
-        answerResult,
         explainedAnswerResult,
         isAnswerTrue,
         frontOfCardAnswers,
@@ -65,7 +64,6 @@ const Card = (props) => {
                             <h3>{question}</h3>
                             <ol className="card__ol">{cardAnswersList}</ol>
                         </div>
-                        <p>{answerResult()}</p>
                         <p>{explainedAnswerResult()}</p>
                         <button onClick={(e) => cardFlip(e, id)}>To Front</button>
                     </div>

@@ -17,7 +17,6 @@ const CardFactory = ({
     const [
         frontOfCardAnswers,
         backOfCardAnswers,
-        answerResult,
         explainedAnswerResult
     ] = createCard(
         multipleChoice,
@@ -45,7 +44,6 @@ const CardFactory = ({
             //props from createCard()
             frontOfCardAnswers={frontOfCardAnswers}
             isAnswerTrue={backOfCardAnswers}
-            answerResult={answerResult}
             explainedAnswerResult={explainedAnswerResult}
 
             //functions passed from main.js

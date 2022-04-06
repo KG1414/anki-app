@@ -4,17 +4,16 @@ import ProgressBar from './Cards/ProgressBar/ProgressBar';
 import './MainContainer.css';
 import './Cards/ProgressBar/ProgressBar.css';
 
-const Main = (props) => {
+const Main = ({ showCards, data, loading, error }) => {
     const [num, setNum] = useState(0);
 
     const answersAnswered = (count) => {
         setNum(prevValue => prevValue + count);
-        console.log(num);
     };
 
     let showContent = <h2 className="main__content">{" "} No topic selected.</h2>;
-    if (props.showCards) {
-        showContent = <Cards data={props.data} loading={props.loading} error={props.error} answersAnswered={answersAnswered} />;
+    if (showCards) {
+        showContent = <Cards data={data} loading={loading} error={error} answersAnswered={answersAnswered} />;
     };
 
     return (
@@ -28,8 +27,8 @@ const Main = (props) => {
                         </ol>
                     </nav>
                 </div>
-                <div className="progressbar__wrapper">
-                    <ProgressBar totalAnswers={props.data.length} numAnswered={num} />
+                <div>
+                    <ProgressBar totalAnswers={data.length} numAnswered={num} />
                 </div>
             </div>
             {showContent}
