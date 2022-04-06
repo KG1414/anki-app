@@ -18,10 +18,10 @@ const Card = (props) => {
 
     const [isClassActive, setIsClassActive] = useState(false);
 
-    const cardFlip = (e, id, isAnswerTrue, selectedAnswersArray) => {
+    const cardFlip = (e, id, selectedAnswersArray) => {
         e.preventDefault();
         answersAnswered(1);
-        compareAnswers(isAnswerTrue, selectedAnswersArray, id);
+        compareAnswers(selectedAnswersArray, id);
         setIsClassActive(prevState => !prevState);
     };
 
@@ -51,7 +51,7 @@ const Card = (props) => {
                             <h3>{question}</h3>
                             <ol className="card__ol">{cardAnswersOptions}</ol>
                         </div>
-                        <button onClick={(e) => cardFlip(e, id, isAnswerTrue, selectedAnswersArray)}>Submit</button>
+                        <button onClick={(e) => cardFlip(e, id, selectedAnswersArray)}>Submit</button>
                     </div>
                 </div>
 
