@@ -1,3 +1,10 @@
+:root {
+    --primary: #0277BD;
+    --secondary: #64B5F6;
+    --dark: #212121;
+    --light: #f3f3f3;
+}
+
 .main__content {
     margin-left: 300px;
     height: 500px;
@@ -8,7 +15,8 @@
 .main__content-nav {
     z-index: 200;
     padding: 0.5% 16px 1% 16px;
-    background-color: #9E9E9E;
+    background-image: linear-gradient(to bottom left, #9E9E9E 10%, 
+    #BDBDBD 60%);
     color: white;
     font-weight: bold;
     height: 70px;
