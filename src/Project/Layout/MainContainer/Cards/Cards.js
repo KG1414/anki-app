@@ -9,11 +9,9 @@ const Cards = ({ data, loading, error, answersAnswered }) => {
 
     const isAnswerSelectedHandler = (event, id, result, cardID, correctAnswers) => {
         event.preventDefault();
-
         const foundAnswerIndex = selectedAnswersArray.findIndex(answer => {
             return answer.id === id && answer.cardID === cardID
         });
-
         if (foundAnswerIndex === -1) {
             setSelectedAnswersArray((prevValue) => {
                 return [
@@ -67,33 +65,42 @@ const Cards = ({ data, loading, error, answersAnswered }) => {
             if (answered.cardID === cardID) {
                 return selectedAnswers[answered.id] = true
             } else {
-                return;
+                return null;
             }
         });
         console.log("selectedAnswers", selectedAnswers);
 
         // Step 4: Compare the actual answer to the users selected answers
-        const finalResult = [];
+        const booleanResult = [];
+        const stringResult = [];
         let index = 0;
 
         filteredAnswers.map(correctAnswer => {
             if (selectedAnswers[index] === true && correctAnswer === true) {
-                finalResult.push(true);
+                stringResult.push(`${true} correctly selected`);
+                booleanResult.push(true);
             }
             if (selectedAnswers[index] === true && correctAnswer === false) {
-                finalResult.push(false);
+                stringResult.push(`${false} incorrectly answered`);
+                booleanResult.push(false);
             }
             if ((selectedAnswers[index] === undefined || null) && correctAnswer === false) {
-                finalResult.push(true);
+                stringResult.push(`${true} didn't answer, incorrect IF selected.`);
+                booleanResult.push(true);
             }
             if ((selectedAnswers[index] === undefined || null) && correctAnswer === true) {
-                finalResult.push(false);
+                stringResult.push(`${false} didn't answer, would have been correct IF selected`);
+                booleanResult.push(false);
             }
             index += 1;
             return correctAnswer;
         });
-        console.log("RESULT!!!!", finalResult);
-        return finalResult;
+        console.log("Boolean result", booleanResult)
+        console.log("String result", stringResult);
+        // If didn't answer, but answer on other side is false then user gets "true", however only true/true should be highlighted green (first IF statement). 
+        // Only if all answers in finalResult show true did the user get all their answers correct and didn't select any incorrect answers
+
+        return [booleanResult, stringResult];
     };
 
     let cardResult = <div className="anki__cards-error"><h3>Nothing is here.</h3></div>;
