@@ -21,7 +21,7 @@ const Card = (props) => {
     const cardFlip = (e, id, isAnswerTrue, selectedAnswersArray) => {
         e.preventDefault();
         answersAnswered(1);
-        compareAnswers(isAnswerTrue, selectedAnswersArray);
+        compareAnswers(isAnswerTrue, selectedAnswersArray, id);
         setIsClassActive(prevState => !prevState);
     };
 
