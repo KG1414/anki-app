@@ -18,14 +18,14 @@ const Card = (props) => {
 
     const [isClassActive, setIsClassActive] = useState(false);
 
-    const cardFlip = (e, id, selectedAnswersArray) => {
+    const cardFlip = (e, id, cardSide, selectedAnswersArray) => {
         e.preventDefault();
         answersAnswered(1);
         compareAnswers(selectedAnswersArray, id);
         setIsClassActive(prevState => !prevState);
     };
 
-    const cardAnswersOptions = frontOfCardAnswers.map((answer, index) => (
+    const frontCardAnswersOptions = frontOfCardAnswers.map((answer, index) => (
         <li className={selectedAnswersArray.find(item => item.id === index && item.cardID === id) ? "active" : ""}
             onClick={(event) => isAnswerSelectedHandler(event, index, answer, id, correctAnswers)}
             name={answer}
@@ -34,9 +34,17 @@ const Card = (props) => {
         </li>
     ));
 
-    const cardAnswersList = frontOfCardAnswers.map((answer, index) => (
-        <li name={answer} key={index} >{index + 1}. {answer}</li>
+    const backCardAnswersOptions = frontOfCardAnswers.map((answer, index) => (
+        <li className={selectedAnswersArray.find(item => item.id === index && item.cardID === id) ? "active" : ""}
+            name={answer}
+            key={index}
+        >{index + 1}. {answer}
+        </li>
     ));
+
+    // const cardAnswersList = frontOfCardAnswers.map((answer, index) => (
+    //     <li className="active__back" name={answer} key={index} >{index + 1}. {answer}</li>
+    // ));
 
     return (
         <div className="card" id={id}>
@@ -49,9 +57,9 @@ const Card = (props) => {
                         </div>
                         <div className="card__body">
                             <h3>{question}</h3>
-                            <ol className="card__ol">{cardAnswersOptions}</ol>
+                            <ol className="card__ol">{frontCardAnswersOptions}</ol>
                         </div>
-                        <button onClick={(e) => cardFlip(e, id, selectedAnswersArray)}>Submit</button>
+                        <button onClick={(e) => cardFlip(e, id, "front", selectedAnswersArray)}>Submit</button>
                     </div>
                 </div>
 
@@ -62,11 +70,14 @@ const Card = (props) => {
                         </div>
                         <div className="card__body">
                             <h3>{question}</h3>
-                            <ol className="card__ol">{cardAnswersList}</ol>
+                            <ol className="card__ol">{backCardAnswersOptions}</ol>
                         </div>
-                        {isUserCorrect ? <p>Correct Answer!</p> : <p>Incorrect Answer.</p>}
+                        {isUserCorrect ?
+                            <h3 className="correct__answer">Correct Answer!</h3> :
+                            <h3 className="incorrect__answer">Incorrect Answer.</h3>
+                        }
                         <p>{explainedAnswerResult()}</p>
-                        <button onClick={(e) => cardFlip(e, id)}>To Front</button>
+                        <button onClick={(e) => cardFlip(e, id, "back", selectedAnswersArray)}>To Front</button>
                     </div>
                 </div>
 

@@ -98,7 +98,6 @@ const Cards = ({ data, loading, error, answersAnswered }) => {
 
         console.log("Boolean result", booleanResult)
         console.log("String result", stringResult);
-        // return [booleanResult, stringResult, isUserCorrect];
     };
 
     let cardResult = <div className="anki__cards-error"><h3>Nothing is here.</h3></div>;
