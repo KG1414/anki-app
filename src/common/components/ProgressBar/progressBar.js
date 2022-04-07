@@ -25,7 +25,6 @@ const ProgressBar = ({ totalAnswers, numAnswered, data, scrollBarId }) => {
         totalAnswers = 0;
     };
 
-
     let styleBar = (
         <div
             className="progress-bar main__progress-bar"
