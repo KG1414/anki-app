@@ -15,7 +15,7 @@ const ErrorPage = () => {
                 onInit={(typewriter) => {
                     typewriter
                         .pauseFor(1000)
-                        .typeString("404, there seems to be a problem....")
+                        .typeString("404, there seems to be a problem ...")
                         .pauseFor(1000)
                         .deleteChars(31)
                         .typeString("page not found.")

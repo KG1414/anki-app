@@ -22,12 +22,16 @@ const Home = () => {
                                 typewriter
                                     .pauseFor(500)
                                     .typeString("Learn. ")
-                                    .pauseFor(1000)
-                                    .typeString("Retain. ")
-                                    .pauseFor(1500)
+                                    .pauseFor(500)
+                                    .typeString("Retain.")
+                                    .pauseFor(500)
                                     .typeString("<br />")
-                                    .pauseFor(1000)
-                                    .typeString("Reach your full potential.")
+                                    .pauseFor(500)
+                                    .typeString("Reach your full")
+                                    .pauseFor(200)
+                                    .typeString(" ")
+                                    .pauseFor(800)
+                                    .typeString("potential.")
                                     .start()
                             }}
                         /></h1>
