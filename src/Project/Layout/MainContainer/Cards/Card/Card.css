@@ -178,6 +178,8 @@
     min-width: 300px;
     list-style-type: none;
     transition: transform 100ms ease-in;
+    position: relative;
+    z-index: 100;
 }
 
 .card__ol .back__select {
@@ -185,7 +187,6 @@
     padding: 10px 5px 10px 10px;
     min-width: 300px;
     list-style-type: none;
-    cursor: auto;
 }
 
 .card__ol .front__select:hover {

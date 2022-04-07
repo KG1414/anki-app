@@ -10,7 +10,7 @@ const Cards = ({ data, loading, error, answersAnswered }) => {
 
     useEffect(() => {
         window.scrollTo(0, 0)
-    }, [data, error])
+    }, [data, error]);
 
     const isAnswerSelectedHandler = (event, id, result, cardID, correctAnswers) => {
         event.preventDefault();
@@ -81,11 +81,11 @@ const Cards = ({ data, loading, error, answersAnswered }) => {
         let index = 0;
         filteredActualAnswers.map(correctAnswer => {
             if (selectedAnswers[index] === true && correctAnswer === true) {
-                stringResult.push(`${true} correctly selected`);
+                stringResult.push(`${true} correctly selected.`);
                 booleanResult.push(true);
             }
             if (selectedAnswers[index] === true && correctAnswer === false) {
-                stringResult.push(`${false} incorrectly answered`);
+                stringResult.push(`${false} incorrectly answered.`);
                 booleanResult.push(false);
             }
             if ((selectedAnswers[index] === undefined || null) && correctAnswer === false) {
@@ -93,7 +93,7 @@ const Cards = ({ data, loading, error, answersAnswered }) => {
                 booleanResult.push(true);
             }
             if ((selectedAnswers[index] === undefined || null) && correctAnswer === true) {
-                stringResult.push(`${false} didn't answer, would have been correct IF selected`);
+                stringResult.push(`${false} didn't answer, would have been correct IF selected.`);
                 booleanResult.push(false);
             }
             index += 1;
@@ -138,14 +138,11 @@ const Cards = ({ data, loading, error, answersAnswered }) => {
                     correctAnswers={correct_answers}
                     correctAnswer={correct_answer}
                     explanation={explanation}
-
                     compareAnswers={compareAnswers}
                     selectedAnswersArray={selectedAnswersArray}
                     isAnswerSelectedHandler={isAnswerSelectedHandler}
                     answersAnswered={answersAnswered}
                     isUserCorrect={isUserCorrect}
-
-                    loading={loading}
                 />
             );
         });

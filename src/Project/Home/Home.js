@@ -33,8 +33,7 @@ const Home = () => {
                                     .pauseFor(800)
                                     .typeString("potential.")
                                     .start()
-                            }}
-                        /></h1>
+                            }} /></h1>
 
                         <div className="title-buttons">
                             <button type="button" className="btn1 btn btn-primary btn-md download-button"><span className="fab fa-apple"></span> Download</button>

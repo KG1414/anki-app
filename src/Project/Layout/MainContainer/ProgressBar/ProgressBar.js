@@ -17,7 +17,6 @@ const ProgressBar = ({ totalAnswers, numAnswered, data, scrollBarId }) => {
     };
 
     const isIdMatch = allDataIDs.find(data => data === scrollBarId);
-    console.log("ALLLLL", isIdMatch);
 
     if (isIdMatch !== scrollBarId) {
         percentageAnswered = 0;

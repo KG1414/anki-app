@@ -20,7 +20,7 @@ const Main = ({ showCards, data, loading, error }) => {
         setScrollBarId(id);
     };
 
-    let showContent = <h2 className="main__content">{" "} No topic selected.</h2>;
+    let showContent = <h2 style={{ display: "flex", justifyContent: "center", marginTop: "300px" }}>No topic selected.</h2>;
     if (showCards) {
         showContent = <Cards data={data} loading={loading} error={error} answersAnswered={answersAnswered} />;
     };
