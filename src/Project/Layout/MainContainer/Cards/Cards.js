@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import CardFactory from './CardFactory/CardFactory';
 import './Cards.css';
 import { ringLoader } from '../../../../common/components/Spinners/Spinners';
@@ -7,6 +7,10 @@ import Carousel from '../../../../common/components/Carousel/Carousel';
 const Cards = ({ data, loading, error, answersAnswered }) => {
     const [selectedAnswersArray, setSelectedAnswersArray] = useState([]);
     const [isUserCorrect, setIsUserCorrect] = useState(false);
+
+    useEffect(() => {
+        window.scrollTo(0, 0)
+    }, [data, error])
 
     const isAnswerSelectedHandler = (event, id, result, cardID, correctAnswers) => {
         event.preventDefault();

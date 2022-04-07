@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import './Carousel.css';
 
 const Carousel = (props) => {
@@ -39,6 +39,10 @@ const Carousel = (props) => {
             setCurrentIndex(prevState => prevState + 1);
         }
     };
+
+    useEffect(() => {
+        setCurrentIndex(0);
+    }, [children]);
 
     return (
         <div className="carousel-container">
