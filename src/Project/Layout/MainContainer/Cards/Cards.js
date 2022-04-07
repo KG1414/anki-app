@@ -144,13 +144,15 @@ const Cards = ({ data, loading, error, answersAnswered }) => {
                     isAnswerSelectedHandler={isAnswerSelectedHandler}
                     answersAnswered={answersAnswered}
                     isUserCorrect={isUserCorrect}
+
+                    loading={loading}
                 />
             );
         });
     };
 
     return (
-        <Carousel visibleCardCount={1} totalElements={data.length}>
+        <Carousel visibleCardCount={1} totalElements={data.length} data={data} loading={loading}>
             {cardResult}
         </Carousel>
     );

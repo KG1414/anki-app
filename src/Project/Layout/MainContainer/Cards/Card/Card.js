@@ -20,7 +20,7 @@ const Card = (props) => {
 
     const cardFlip = (e, id, cardSide, selectedAnswersArray) => {
         e.preventDefault();
-        answersAnswered(1);
+        answersAnswered(1, id);
         compareAnswers(selectedAnswersArray, id);
         setIsClassActive(prevState => !prevState);
     };

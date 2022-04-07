@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import './Carousel.css';
 
 const Carousel = (props) => {
-    const { children, visibleCardCount, totalElements } = props;
+    const { children, visibleCardCount, totalElements, data, loading } = props;
 
     const [currentIndex, setCurrentIndex] = useState(0);
     const [touchPosition, setTouchPosition] = useState(null);
@@ -42,7 +42,7 @@ const Carousel = (props) => {
 
     useEffect(() => {
         setCurrentIndex(0);
-    }, [children]);
+    }, [data, loading]);
 
     return (
         <div className="carousel-container">

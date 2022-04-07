@@ -1,8 +1,30 @@
-import './progressBar.css';
+import './ProgressBar.css';
 
-export const progressBar = ({ totalAnswers, numAnswered }) => {
+export const ProgressBar = ({ totalAnswers, numAnswered, data, scrollBarId }) => {
 
     let percentageAnswered = (numAnswered / totalAnswers) * 100;
+
+    if (data === null || data === undefined) {
+        return;
+    };
+    if (scrollBarId === null || scrollBarId === undefined) {
+        return;
+    };
+
+    const allDataIDs = [];
+    if (data !== undefined || data !== null) {
+        data.map(data => allDataIDs.push(data.id))
+    };
+
+    const isIdMatch = allDataIDs.find(data => data === scrollBarId);
+    console.log("ALLLLL", isIdMatch);
+
+    if (isIdMatch !== scrollBarId) {
+        percentageAnswered = 0;
+        numAnswered = 0;
+        totalAnswers = 0;
+    };
+
 
     let styleBar = (
         <div

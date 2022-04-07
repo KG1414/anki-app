@@ -1,13 +1,23 @@
 import { useState } from "react";
 import Cards from "./Cards/Cards";
-import { progressBar } from "../../../common/components/ProgressBar/progressBar";
+import { ProgressBar } from "../../../common/components/ProgressBar/ProgressBar";
 import './MainContainer.css';
 
 const Main = ({ showCards, data, loading, error }) => {
     const [num, setNum] = useState(0);
+    const [scrollBarId, setScrollBarId] = useState(0);
 
-    const answersAnswered = (count) => {
+    const answersAnswered = (count, id) => {
+        const allDataIDs = [];
+        if (data !== undefined || data !== null) {
+            data.map(data => allDataIDs.push(data.id))
+        };
+        const isIdMatch = allDataIDs.find(data => data === scrollBarId);
+        if (isIdMatch !== scrollBarId) {
+            setNum(0);
+        };
         setNum(prevValue => prevValue + count);
+        setScrollBarId(id);
     };
 
     let showContent = <h2 className="main__content">{" "} No topic selected.</h2>;
@@ -27,7 +37,7 @@ const Main = ({ showCards, data, loading, error }) => {
                     </nav>
                 </div>
                 <div>
-                    {progressBar({ totalAnswers: data.length, numAnswered: num })}
+                    <ProgressBar totalAnswers={data.length} numAnswered={num} data={data} scrollBarId={scrollBarId} />
                 </div>
             </div>
             {showContent}
