@@ -68,7 +68,7 @@
 }
 
 .correct__answer {
-    color: #9CCC65;
+    color: #689F38;
 }
 
 .incorrect__answer {
@@ -172,7 +172,7 @@
     padding-left: 0;
 }
 
-.card__ol > li {
+.card__ol .front__select {
     margin-top: 5px;
     padding: 10px 5px 10px 10px;
     min-width: 300px;
@@ -180,16 +180,26 @@
     transition: transform 100ms ease-in;
 }
 
-.card__ol > li:hover {
-   border-radius: 10px;
-   padding: 10px;
-   list-style-type: none;
-   box-shadow: 1px 3px 5px 2px rgba(0, 0, 0, 0.2);
-   transform: scale(1.03);
+.card__ol .back__select {
+    margin-top: 5px;
+    padding: 10px 5px 10px 10px;
+    min-width: 300px;
+    list-style-type: none;
+    cursor: auto;
 }
 
+.card__ol .front__select:hover {
+    border-radius: 10px;
+    padding: 10px;
+    list-style-type: none;
+    box-shadow: 1px 3px 5px 2px rgba(0, 0, 0, 0.2);
+    transform: scale(1.03);
+ }
+
 li.active {
-    background-color: #C8E6C9;
+    background-color: #64B5F6;
+    color: white;
+    font-weight: bold;
     border-radius: 10px;
     padding: 10px;
     list-style-type: none;
@@ -203,6 +213,12 @@ li.active {
     list-style-type: none;
     box-shadow: 1px 3px 5px 2px rgba(0, 0, 0, 0.2);
     transform: scale(1.03);
+    cursor: auto;
+ }
+
+ .explained__answer {
+     padding-left: 40px;
+     padding-right: 40px;
  }
 
 .card__content > button {

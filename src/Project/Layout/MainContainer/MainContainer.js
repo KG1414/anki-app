@@ -1,8 +1,7 @@
 import { useState } from "react";
 import Cards from "./Cards/Cards";
-import ProgressBar from './Cards/ProgressBar/ProgressBar';
+import { progressBar } from "../../../shared/components/ProgressBar/progressBar";
 import './MainContainer.css';
-import './Cards/ProgressBar/ProgressBar.css';
 
 const Main = ({ showCards, data, loading, error }) => {
     const [num, setNum] = useState(0);
@@ -28,7 +27,7 @@ const Main = ({ showCards, data, loading, error }) => {
                     </nav>
                 </div>
                 <div>
-                    <ProgressBar totalAnswers={data.length} numAnswered={num} />
+                    {progressBar({ totalAnswers: data.length, numAnswered: num })}
                 </div>
             </div>
             {showContent}

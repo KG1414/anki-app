@@ -26,7 +26,7 @@ const Card = (props) => {
     };
 
     const frontCardAnswersOptions = frontOfCardAnswers.map((answer, index) => (
-        <li className={selectedAnswersArray.find(item => item.id === index && item.cardID === id) ? "active" : ""}
+        <li className={selectedAnswersArray.find(item => item.id === index && item.cardID === id) ? "active front__select" : "front__select"}
             onClick={(event) => isAnswerSelectedHandler(event, index, answer, id, correctAnswers)}
             name={answer}
             key={index}
@@ -35,7 +35,7 @@ const Card = (props) => {
     ));
 
     const backCardAnswersOptions = frontOfCardAnswers.map((answer, index) => (
-        <li className={selectedAnswersArray.find(item => item.id === index && item.cardID === id) ? "active" : ""}
+        <li className={selectedAnswersArray.find(item => item.id === index && item.cardID === id) ? "active__back back__select" : "back__select"}
             name={answer}
             key={index}
         >{index + 1}. {answer}
@@ -74,10 +74,11 @@ const Card = (props) => {
                         </div>
                         {isUserCorrect ?
                             <h3 className="correct__answer">Correct Answer!</h3> :
-                            <h3 className="incorrect__answer">Incorrect Answer :/</h3>
+                            <h3 className="incorrect__answer">Incorrect Answer</h3>
                         }
-                        <p>{explainedAnswerResult()}</p>
+                        <p className="explained__answer">{explainedAnswerResult()}</p>
                         {/* <button onClick={(e) => cardFlip(e, id, "back", selectedAnswersArray)}>To Front</button> */}
+                        {/* button above will be re-implemented again later when functionality is updated */}
                     </div>
                 </div>
 

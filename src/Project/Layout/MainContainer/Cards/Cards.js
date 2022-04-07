@@ -92,6 +92,7 @@ const Cards = ({ data, loading, error, answersAnswered }) => {
             return correctAnswer;
         });
 
+        // Step 5: Extrapolate answers for use throughout the app
         let isCorrectAnswerCheck = resultArray => resultArray.every(ans => ans === true);
         const isCorrectAnswers = isCorrectAnswerCheck(booleanResult);
         setIsUserCorrect(isCorrectAnswers);
@@ -134,7 +135,6 @@ const Cards = ({ data, loading, error, answersAnswered }) => {
                     selectedAnswersArray={selectedAnswersArray}
                     isAnswerSelectedHandler={isAnswerSelectedHandler}
                     answersAnswered={answersAnswered}
-
                     isUserCorrect={isUserCorrect}
                 />
             );

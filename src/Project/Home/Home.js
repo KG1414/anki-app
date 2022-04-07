@@ -1,6 +1,7 @@
 import React from 'react';
 import NavBar from '../../shared/components/NavBar/NavBar';
 import Footer from '../../shared/components/Footer/Footer';
+import Typewriter from 'typewriter-effect';
 import './Home.css';
 import iphone from '../../images/Untitled design.png';
 
@@ -11,7 +12,26 @@ const Home = () => {
                 <NavBar />
                 <div className="row title-row container-fluid">
                     <div className="col col-lg-6 col-md-12 no-break">
-                        <h1 className="big-heading">Learn. Retain. Reach your full potential.</h1>
+
+                        <h1 className="big-heading"><Typewriter
+                            options={{
+                                delay: 75,
+                                deleteSpeed: 1
+                            }}
+                            onInit={(typewriter) => {
+                                typewriter
+                                    .pauseFor(500)
+                                    .typeString("Learn. ")
+                                    .pauseFor(1000)
+                                    .typeString("Retain. ")
+                                    .pauseFor(1500)
+                                    .typeString("<br />")
+                                    .pauseFor(1000)
+                                    .typeString("Reach your full potential.")
+                                    .start()
+                            }}
+                        /></h1>
+
                         <div className="title-buttons">
                             <button type="button" className="btn1 btn btn-primary btn-md download-button"><span className="fab fa-apple"></span> Download</button>
                             <button type="button" className="btn btn-outline-primary btn-md download-button"><i className="fab fa-google-play"></i> Download</button>

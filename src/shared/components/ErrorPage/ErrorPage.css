@@ -1,0 +1,15 @@
+.error__page-wrapper {
+    /* text-align: center; */
+    height: 100vh;
+    font-weight: bold;
+    background-color: black;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.error__page-wrapper button {
+    margin-top: 30px;
+}

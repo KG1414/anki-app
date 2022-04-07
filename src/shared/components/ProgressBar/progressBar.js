@@ -1,6 +1,6 @@
-import './ProgressBar.css';
+import './progressBar.css';
 
-const ProgressBar = ({ totalAnswers, numAnswered }) => {
+export const progressBar = ({ totalAnswers, numAnswered }) => {
 
     let percentageAnswered = (numAnswered / totalAnswers) * 100;
 
@@ -32,5 +32,3 @@ const ProgressBar = ({ totalAnswers, numAnswered }) => {
         </div>
     );
 };
-
-export default ProgressBar;
