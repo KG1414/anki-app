@@ -74,10 +74,10 @@ const Card = (props) => {
                         </div>
                         {isUserCorrect ?
                             <h3 className="correct__answer">Correct Answer!</h3> :
-                            <h3 className="incorrect__answer">Incorrect Answer.</h3>
+                            <h3 className="incorrect__answer">Incorrect Answer :/</h3>
                         }
                         <p>{explainedAnswerResult()}</p>
-                        <button onClick={(e) => cardFlip(e, id, "back", selectedAnswersArray)}>To Front</button>
+                        {/* <button onClick={(e) => cardFlip(e, id, "back", selectedAnswersArray)}>To Front</button> */}
                     </div>
                 </div>
 
