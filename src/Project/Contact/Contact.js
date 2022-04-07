@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import onlineWorld from '../../images/online-world.png';
-import Footer from '../../shared/components/Footer/Footer';
-import FormNavBar from '../../shared/components/NavBar/NavBar';
+import Footer from '../../common/components/Footer/Footer';
+import FormNavBar from '../../common/components/NavBar/NavBar';
 import './Contact.css';
 
 const formToken = process.env.REACT_APP_FORM_TOKEN;

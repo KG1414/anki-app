@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import CardFactory from './CardFactory/CardFactory';
 import './Cards.css';
-import { ringLoader } from '../../../../shared/components/Spinners/Spinners';
-import Carousel from '../../../../shared/components/Carousel/Carousel';
+import { ringLoader } from '../../../../common/components/Spinners/Spinners';
+import Carousel from '../../../../common/components/Carousel/Carousel';
 
 const Cards = ({ data, loading, error, answersAnswered }) => {
     const [selectedAnswersArray, setSelectedAnswersArray] = useState([]);
@@ -36,11 +36,13 @@ const Cards = ({ data, loading, error, answersAnswered }) => {
         if (selectedAnswersArray === undefined || null) {
             return;
         };
+
         //Step 1: Find Data only from selected card
         const foundCard = data.findIndex(allData => {
             return allData.id === cardID
         });
         const cardToCheck = data[foundCard];
+
         // Step 2: Map actual answers into Boolean values
         const correctAnswers = [];
         const newSelectedAnswersArray = { ...cardToCheck };
@@ -58,6 +60,7 @@ const Cards = ({ data, loading, error, answersAnswered }) => {
         const filteredActualAnswers = Object.values(correctAnswers).filter(answer => {
             return answer !== undefined && answer !== null;
         });
+
         // Step 3: Create a hashmap/key-value pairs of the users selected answers
         const selectedAnswers = [];
         selectedAnswersArray.map(answered => {
@@ -67,6 +70,7 @@ const Cards = ({ data, loading, error, answersAnswered }) => {
                 return null;
             }
         });
+
         // Step 4: Compare the actual answer to the users selected answers
         const booleanResult = [];
         const stringResult = [];

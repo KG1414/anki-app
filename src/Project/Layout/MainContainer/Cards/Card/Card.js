@@ -42,10 +42,6 @@ const Card = (props) => {
         </li>
     ));
 
-    // const cardAnswersList = frontOfCardAnswers.map((answer, index) => (
-    //     <li className="active__back" name={answer} key={index} >{index + 1}. {answer}</li>
-    // ));
-
     return (
         <div className="card" id={id}>
             <div className={isClassActive ? `card__inner` : `card__inner is-flipped`}>
@@ -77,8 +73,6 @@ const Card = (props) => {
                             <h3 className="incorrect__answer">Incorrect Answer</h3>
                         }
                         <p className="explained__answer">{explainedAnswerResult()}</p>
-                        {/* <button onClick={(e) => cardFlip(e, id, "back", selectedAnswersArray)}>To Front</button> */}
-                        {/* button above will be re-implemented again later when functionality is updated */}
                     </div>
                 </div>
 

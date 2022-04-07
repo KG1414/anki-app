@@ -2,7 +2,7 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Layout from "../Project/Layout/Layout";
 import Home from '../Project/Home/Home';
 import Contact from '../Project/Contact/Contact';
-import ErrorPage from '../shared/components/ErrorPage/ErrorPage';
+import ErrorPage from '../common/components/ErrorPage/ErrorPage';
 
 const Router = () => {
     return (

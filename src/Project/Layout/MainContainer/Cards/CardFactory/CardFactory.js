@@ -15,8 +15,6 @@ const CardFactory = ({
     answersAnswered,
     isUserCorrect }) => {
 
-    // console.log("Card Factory is user correct", isUserCorrect);
-
     const [
         frontOfCardAnswers,
         backOfCardAnswers,

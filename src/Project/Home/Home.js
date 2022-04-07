@@ -1,6 +1,6 @@
 import React from 'react';
-import NavBar from '../../shared/components/NavBar/NavBar';
-import Footer from '../../shared/components/Footer/Footer';
+import NavBar from '../../common/components/NavBar/NavBar';
+import Footer from '../../common/components/Footer/Footer';
 import Typewriter from 'typewriter-effect';
 import './Home.css';
 import iphone from '../../images/Untitled design.png';
