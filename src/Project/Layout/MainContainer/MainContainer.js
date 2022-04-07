@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Cards from "./Cards/Cards";
-import { ProgressBar } from "../../../common/components/ProgressBar/ProgressBar";
+import ProgressBar from "../../../common/components/ProgressBar/ProgressBar";
 import './MainContainer.css';
 
 const Main = ({ showCards, data, loading, error }) => {
