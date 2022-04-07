@@ -6,6 +6,7 @@ import Carousel from '../../../../shared/components/Carousel/Carousel';
 
 const Cards = ({ data, loading, error, answersAnswered }) => {
     const [selectedAnswersArray, setSelectedAnswersArray] = useState([]);
+    const [isUserCorrect, setIsUserCorrect] = useState(false);
 
     const isAnswerSelectedHandler = (event, id, result, cardID, correctAnswers) => {
         event.preventDefault();
@@ -32,19 +33,21 @@ const Cards = ({ data, loading, error, answersAnswered }) => {
     };
 
     const compareAnswers = (selectedAnswersArray, cardID) => {
+        if (selectedAnswersArray === undefined || null) {
+            return;
+        };
         //Step 1: Find Data only from selected card
         const foundCard = data.findIndex(allData => {
             return allData.id === cardID
         });
         const cardToCheck = data[foundCard];
-
         // Step 2: Map actual answers into Boolean values
         const correctAnswers = [];
         const newSelectedAnswersArray = { ...cardToCheck };
-        const answersToReturn = Object.values(newSelectedAnswersArray.answers).filter(answer => {
+        const noOfAnswersToReturn = Object.values(newSelectedAnswersArray.answers).filter(answer => {
             return answer !== null;
         });
-        let count = answersToReturn.length;
+        let count = noOfAnswersToReturn.length;
         Object.values(newSelectedAnswersArray.correct_answers).map(value => {
             if (count > 0) {
                 count--;
@@ -52,14 +55,10 @@ const Cards = ({ data, loading, error, answersAnswered }) => {
             };
             return correctAnswers.push(toBoolean);
         });
-        const filteredAnswers = Object.values(correctAnswers).filter(answer => {
+        const filteredActualAnswers = Object.values(correctAnswers).filter(answer => {
             return answer !== undefined && answer !== null;
         });
-
         // Step 3: Create a hashmap/key-value pairs of the users selected answers
-        if (selectedAnswersArray === undefined || null) {
-            return;
-        };
         const selectedAnswers = [];
         selectedAnswersArray.map(answered => {
             if (answered.cardID === cardID) {
@@ -68,14 +67,11 @@ const Cards = ({ data, loading, error, answersAnswered }) => {
                 return null;
             }
         });
-        console.log("selectedAnswers", selectedAnswers);
-
         // Step 4: Compare the actual answer to the users selected answers
         const booleanResult = [];
         const stringResult = [];
         let index = 0;
-
-        filteredAnswers.map(correctAnswer => {
+        filteredActualAnswers.map(correctAnswer => {
             if (selectedAnswers[index] === true && correctAnswer === true) {
                 stringResult.push(`${true} correctly selected`);
                 booleanResult.push(true);
@@ -95,12 +91,14 @@ const Cards = ({ data, loading, error, answersAnswered }) => {
             index += 1;
             return correctAnswer;
         });
+
+        let isCorrectAnswerCheck = resultArray => resultArray.every(ans => ans === true);
+        const isCorrectAnswers = isCorrectAnswerCheck(booleanResult);
+        setIsUserCorrect(isCorrectAnswers);
+
         console.log("Boolean result", booleanResult)
         console.log("String result", stringResult);
-        // If didn't answer, but answer on other side is false then user gets "true", however only true/true should be highlighted green (first IF statement). 
-        // Only if all answers in finalResult show true did the user get all their answers correct and didn't select any incorrect answers
-
-        return [booleanResult, stringResult];
+        // return [booleanResult, stringResult, isUserCorrect];
     };
 
     let cardResult = <div className="anki__cards-error"><h3>Nothing is here.</h3></div>;
@@ -132,10 +130,13 @@ const Cards = ({ data, loading, error, answersAnswered }) => {
                     correctAnswers={correct_answers}
                     correctAnswer={correct_answer}
                     explanation={explanation}
+
                     compareAnswers={compareAnswers}
                     selectedAnswersArray={selectedAnswersArray}
                     isAnswerSelectedHandler={isAnswerSelectedHandler}
                     answersAnswered={answersAnswered}
+
+                    isUserCorrect={isUserCorrect}
                 />
             );
         });

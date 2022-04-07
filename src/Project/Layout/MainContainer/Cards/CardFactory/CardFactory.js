@@ -12,16 +12,18 @@ const CardFactory = ({
     compareAnswers,
     selectedAnswersArray,
     isAnswerSelectedHandler,
-    answersAnswered }) => {
+    answersAnswered,
+    isUserCorrect }) => {
+
+    // console.log("Card Factory is user correct", isUserCorrect);
 
     const [
         frontOfCardAnswers,
         backOfCardAnswers,
-        explainedAnswerResult
+        explainedAnswerResult,
     ] = createCard(
         multipleChoice,
         correctAnswers,
-        correctAnswer,
         explanation
     );
 
@@ -40,6 +42,7 @@ const CardFactory = ({
             compareAnswers={compareAnswers}
             selectedAnswersArray={selectedAnswersArray}
             isAnswerSelectedHandler={isAnswerSelectedHandler}
+            isUserCorrect={isUserCorrect}
 
             //props from createCard()
             frontOfCardAnswers={frontOfCardAnswers}

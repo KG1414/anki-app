@@ -8,12 +8,12 @@ const Card = (props) => {
         question,
         correctAnswers,
         explainedAnswerResult,
-        isAnswerTrue,
         frontOfCardAnswers,
         selectedAnswersArray,
         isAnswerSelectedHandler,
         compareAnswers,
-        answersAnswered
+        answersAnswered,
+        isUserCorrect
     } = props;
 
     const [isClassActive, setIsClassActive] = useState(false);
@@ -34,8 +34,8 @@ const Card = (props) => {
         </li>
     ));
 
-    const cardAnswersList = isAnswerTrue.map((answer, index) => (
-        <li key={index}>{index + 1}. {answer}</li>
+    const cardAnswersList = frontOfCardAnswers.map((answer, index) => (
+        <li name={answer} key={index} >{index + 1}. {answer}</li>
     ));
 
     return (
@@ -64,6 +64,7 @@ const Card = (props) => {
                             <h3>{question}</h3>
                             <ol className="card__ol">{cardAnswersList}</ol>
                         </div>
+                        {isUserCorrect ? <p>Correct Answer!</p> : <p>Incorrect Answer.</p>}
                         <p>{explainedAnswerResult()}</p>
                         <button onClick={(e) => cardFlip(e, id)}>To Front</button>
                     </div>

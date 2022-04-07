@@ -1,4 +1,4 @@
-export const createCard = (multipleChoice, correctAnswers, correctAnswer, explanation) => {
+export const createCard = (multipleChoice, correctAnswers, explanation) => {
     let noOfAnswersCount = 0;
 
     let frontOfCardAnswers = [];
